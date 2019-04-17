@@ -1,0 +1,5 @@
+<resources>
+    <string name="access_token">pk.eyJ1Ijoia2V2aW5zdW5kYXIiLCJhIjoiY2lmNjF6aGdmMDM1MDdzbHVpcThyZjF4YyJ9.1NKie7hjfYG3dNPYLhRizA</string>
+    <string name="user_location_permission_explanation">hello</string>
+    <string name="user_location_permission_not_granted">hello</string>
+</resources>
