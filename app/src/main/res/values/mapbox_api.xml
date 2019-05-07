@@ -1,5 +1,5 @@
 <resources>
-    <string name="access_token">pk.eyJ1Ijoia2V2aW5zdW5kYXIiLCJhIjoiY2lmNjF6aGdmMDM1MDdzbHVpcThyZjF4YyJ9.1NKie7hjfYG3dNPYLhRizA</string>
+    <string name="access_token">pk.eyJ1IjoidGlhbmF0b25udSIsImEiOiJjanUzMnN2NWgwaXNwM3lydmF2eWloeHZyIn0.c04-FzQQrto2fimOF5a_zg</string>
     <string name="user_location_permission_explanation">hello</string>
     <string name="user_location_permission_not_granted">hello</string>
 </resources>
