@@ -1,4 +1,4 @@
-#Sat May 11 14:45:55 PDT 2019
+#Sat May 11 19:36:27 PDT 2019
 base.0=H\:\\BS Documents\\GitHub\\handymaps\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\7
 path.0=classes.dex
 renamed.0=classes.dex
