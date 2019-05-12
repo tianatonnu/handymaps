@@ -58,6 +58,7 @@ public class JSONParser extends Application {
 
         try {
             sections = new JSONObject(loadJSONFromAsset("sections.json"));
+            Log.d("Phase", "Post JSON");
             courses = sections.getJSONArray("features");
 
             // Get the number of courses
@@ -65,6 +66,7 @@ public class JSONParser extends Application {
             cpCourses = new Course[courses.length()];
             numberOfSections = courses.length();
 
+            Log.d("Phase", "Pre Course Array Population ");
             // Loop through the JSON Array to get each Course Info
             for (int x = 0; x < numberOfSections; x++) {
                 course = courses.getJSONObject(x);
@@ -85,7 +87,7 @@ public class JSONParser extends Application {
 
                 cpCourses[x] = new Course(courseDept, courseNumber, courseSectionNumber, courseName, courseBldg, courseRoom, courseLocation, rawCourseTime);
             }
-
+            Log.d("Phase", "Post Course Array Population");
             //Printing out each course Card
           /*  for(Course c: cpCourses){
                 Log.v("Course: ",c.createCard());
