@@ -50,11 +50,11 @@ public class Course {
         return rawTime;
     }
 
-    public double getCoordLat(){
+    public double getCourseLat(){
         return location[0];
     }
 
-    public double getCoordLong(){
+    public double getCourseLong(){
         return location[1];
     }
 

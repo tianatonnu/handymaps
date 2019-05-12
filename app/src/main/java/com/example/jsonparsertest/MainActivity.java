@@ -16,6 +16,9 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
 
     String[] cpCourses_arr;
+    String[] cpBuildings_arr;
+    String[] cpClassrooms_arr;
+
     ListView lv;
 
     @Override
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
             cpCourses_arr = JSONParser.getCourses();
+            cpBuildings_arr = JSONParser.getBuildings();
+            cpClassrooms_arr = JSONParser.getClassrooms();
 
             //Setting the ListView object with the ListView element in activity_main.xml
             lv =(ListView) findViewById(R.id.listView);
