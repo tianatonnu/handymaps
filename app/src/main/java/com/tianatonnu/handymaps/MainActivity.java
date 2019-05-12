@@ -3,6 +3,7 @@ package com.tianatonnu.handymaps;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.DirectionsCriteria;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
@@ -23,11 +25,15 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.style.layers.Layer;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
+import static com.mapbox.mapboxsdk.style.layers.Property.VISIBLE;
+import static com.mapbox.mapboxsdk.style.layers.Property.NONE;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.visibility;
 
 // classes to calculate a route
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
@@ -65,7 +71,9 @@ public class MainActivity extends AppCompatActivity implements
 
     // variables needed to initialize navigation
     private Button button;
-    private Button centerBtn;
+    private Button clearBtn;
+    private FloatingActionButton centerBtn;
+    private int center = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,15 +119,48 @@ public class MainActivity extends AppCompatActivity implements
                             }
                         });
 
-                        centerBtn = findViewById(R.id.centerButton);
+                        clearBtn = findViewById(R.id.clearButton);
+                        clearBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (navigationMapRoute != null) {
+                                    navigationMapRoute.removeRoute();
+                                    // Disable the route start and clear buttons
+                                    button.setEnabled(false);
+                                    button.setVisibility(View.INVISIBLE);
+                                    //button.setBackgroundResource(R.color.mapboxGrayLight);
+                                    clearBtn.setEnabled(false);
+                                    clearBtn.setVisibility(View.INVISIBLE);
+                                    //clearBtn.setBackgroundResource(R.color.mapboxGrayLight);
+
+                                    // Remove the way point marker
+                                    Layer layer = mapboxMap.getStyle().getLayer("destination-symbol-layer-id");
+                                    if (layer != null)
+                                    {
+                                        layer.setProperties(visibility(NONE));
+                                    }
+                                }
+                            }
+                        });
+
+                        centerBtn = findViewById(R.id.center_toggle);
                         centerBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                //locationComponent.setCameraMode(CameraMode.TRACKING);
-                                if (navigationMapRoute != null) {
-                                    navigationMapRoute.removeRoute();
-                                    button.setEnabled(false);
-                                    button.setBackgroundResource(R.color.mapboxGrayLight);
+                                // Switch to center on user's current location
+                                if (center == 0)
+                                {
+                                    center = 1;
+                                    mapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(locationComponent.getLastKnownLocation().getLatitude(),
+                                            locationComponent.getLastKnownLocation().getLongitude()), 16));
+                                    centerBtn.setImageResource(R.drawable.ic_my_location_24dp);
+                                }
+                                // Switch to centered on middle of campus
+                                else
+                                {
+                                    center = 0;
+                                    mapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(35.300559, -120.661090), 16));
+                                    centerBtn.setImageResource(R.drawable.ic_location_disabled_24dp);
                                 }
                             }
                         });
@@ -136,7 +177,8 @@ public class MainActivity extends AppCompatActivity implements
         destinationSymbolLayer.withProperties(
                 iconImage("destination-icon-id"),
                 iconAllowOverlap(true),
-                iconIgnorePlacement(true)
+                iconIgnorePlacement(true),
+                visibility(VISIBLE)
         );
         loadedMapStyle.addLayer(destinationSymbolLayer);
     }
@@ -144,6 +186,12 @@ public class MainActivity extends AppCompatActivity implements
     @SuppressWarnings( {"MissingPermission"})
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
+        // Make the way point marker visible
+        Layer layer = mapboxMap.getStyle().getLayer("destination-symbol-layer-id");
+        if (layer != null)
+        {
+            layer.setProperties(visibility(VISIBLE));
+        }
 
         Point destinationPoint = Point.fromLngLat(point.getLongitude(), point.getLatitude());
         Point originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
@@ -155,8 +203,13 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         getRoute(originPoint, destinationPoint);
+        // Enable the route start and clear buttons
         button.setEnabled(true);
-        button.setBackgroundResource(R.color.mapboxBlue);
+        button.setVisibility(View.VISIBLE);
+        //button.setBackgroundResource(R.color.mapboxBlue);
+        clearBtn.setEnabled(true);
+        clearBtn.setVisibility(View.VISIBLE);
+        //clearBtn.setBackgroundResource(R.color.mapboxBlue);
         return true;
     }
 
