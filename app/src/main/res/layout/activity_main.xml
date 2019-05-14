@@ -6,13 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/center_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_location_disabled_24dp"
+        tools:ignore="VectorDrawableCompat"
+        android:background="@color/colorPrimary"
+        mapbox:layout_constraintLeft_toLeftOf="parent"
+        mapbox:layout_constraintTop_toTopOf="parent"/>
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        mapbox:mapbox_cameraTilt="20"
-        mapbox:mapbox_cameraZoom="15"
+        mapbox:mapbox_cameraTargetLat="35.300559"
+        mapbox:mapbox_cameraTargetLng="-120.661090"
+        mapbox:mapbox_cameraTilt="25"
+        mapbox:mapbox_cameraZoom="16"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/routeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/mapboxBlue"
+        android:enabled="false"
+        android:visibility="invisible"
+        android:text="@string/find"
+        android:textColor="@color/mapboxWhite"
+        mapbox:layout_constraintStart_toStartOf="parent"
+        mapbox:layout_constraintBottom_toBottomOf="parent"
+        mapbox:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/clearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/mapboxBlue"
+        android:enabled="false"
+        android:visibility="invisible"
+        android:text="@string/clear"
+        android:textColor="@color/mapboxWhite"
+        mapbox:layout_constraintBottom_toBottomOf="parent"
+        mapbox:layout_constraintRight_toRightOf="parent"/>
+
+
+    <ListView
+        android:id="@+id/ListView"
+        style="@style/Widget.AppCompat.ListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mapboxWhite"
+        android:divider="@color/cardview_dark_background"
+        android:dividerHeight="5dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:visibility="invisible"
+        mapbox:layout_constraintLeft_toLeftOf="parent"
+        mapbox:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

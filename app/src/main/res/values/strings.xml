@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HandyMaps</string>
+    <string name="hint">Search...</string>
+    <string name="start">Start Navigation</string>
+    <string name="find">Find Route</string>
+    <string name="clear">Clear</string>
 </resources>
