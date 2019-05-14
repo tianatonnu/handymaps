@@ -596,11 +596,14 @@ public class MainActivity extends AppCompatActivity implements
                     // Disable the route start button
                     startButton.setEnabled(false);
                     startButton.setVisibility(View.INVISIBLE);
+                    start = 0;
                     // Enable the find route and clear buttons
                     findButton.setEnabled(true);
                     findButton.setVisibility(View.VISIBLE);
+                    find = 1;
                     clearBtn.setEnabled(true);
                     clearBtn.setVisibility(View.VISIBLE);
+                    clear = 1;
                     centerBtn.setVisibility(View.VISIBLE);
                 }
             }
