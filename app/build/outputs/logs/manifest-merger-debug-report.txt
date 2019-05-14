@@ -1,165 +1,165 @@
 -- Merging decision tree log ---
 manifest
-ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\30683f9fad791f6cf712ca93397d645d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d39ef3dc49be57cdfe11d283a29e5814\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\ce33ae1d0728d944e1c3035ed0d9c0aa\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\96d5611e55bf48baa216caac9d1bfecf\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\87eda1b84939e1ee4336c5199545b3cc\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\93030ce161b98b50d869b64e97384d13\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\60627ceccc12063a527370cd609df1cc\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8bcd128219d07affbc5f53c6e81b095c\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:loader:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\38ed8b5bb116952cc71456a18402c2a2\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e9c145bb6679587eef9670b42c53d963\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\7c653a551be1dbcfb272515bc939241b\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d7d030490a0535ff5027b08a4efff17c\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e017a32c5dceaff4a91bacbf17bbaf4a\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:customview:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\b2495303b08805b4267000526506e8d1\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\bd7fcc437170e7ee284f4935311f7b95\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d723484191d001059a66cff73a887630\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\9f15737dbc13d8b6d45997070b573f0c\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\165389d42ef95f672dc3e3efd0313f1b\AndroidManifest.xml:17:1-25:12
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\2f51fe3341fd194ef5d386cc851abb3b\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8444125e8f177f9879967d39f789cc4d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e514dd286d11df23912b05fe95bf3941\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\a85176bd0e58e1d9c40b78b36d7a8102\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:print:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8e0f840c85ebe0b7e7f8f3fc58e298b1\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\967c62f413eec74715067251b840bc77\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e3488087ebd143a09574096574903aa4\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8e356d6a299008664e6e8654391a6cca\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\a0d5e2539562808d55990745ce7458f1\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e0d912dbc0f02fb52e38e26df76fdf2e\AndroidManifest.xml:17:1-22:12
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\07c780e2d084fdea8bb377081eecfe83\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d92bad0a8d2f22f75c554e6c0ffc2b83\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\cced98f680075d18ab5d894a46c666b7\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\e61eb260256ab882417546185419aed3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ec59155f30d7fbefdd8eb83c9e2bb038\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\bd69e5864bd483081d6ce2a8681c6fdd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fd90af826b2c714657bdd6f9f5308b16\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcb0deac512c53d90620089e367e5414\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\f93d316ccb39dd7afb38270fad316c89\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\92fc2c5db10c0a6924cf4108e3499345\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\2fb61c41e1559f8dc0b5928d84600d1b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4f71a19f315d50a3cdbf03cf9df1a99a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\63da5a99404e9b0bebe44a3ec612651d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4aff2a3f2e4fc7f938e9a59d984400c3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\e610721aa63d73e291e9cabc0fec45c5\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\67bd0431a54d2ce3ac51ab005558a059\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\0eb0da64d63ca496fed27f70dfebd65e\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d36dcddd488d24df95a8054cbd09f7d0\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\335a800233dcf3832cba48148062d85c\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\5726e6ee18be51dffba2a7e34a4a1681\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\9db89ed04327a6c3a730a9069394d593\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1f343e04e397a4d9f5ac87b37fefcced\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\854bdd539cd56da2859e0ef561fe4d0b\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ef5b4644efaeae94615049bb413d587c\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\99e373dc2265f6f2fb235dc464a4201b\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4d2796e2f432b2aea6557e8faff60aa5\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\a4276b0adf3ab454b2bae93865251ff6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ef0b99d04c589e0d7d15322638a28e68\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
 	package
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:3:5-41
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:3:5-41
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:1-22:12
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:5:5-20:19
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d39ef3dc49be57cdfe11d283a29e5814\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d39ef3dc49be57cdfe11d283a29e5814\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\9f15737dbc13d8b6d45997070b573f0c\AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\9f15737dbc13d8b6d45997070b573f0c\AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\165389d42ef95f672dc3e3efd0313f1b\AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\165389d42ef95f672dc3e3efd0313f1b\AndroidManifest.xml:22:5-23:19
+ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:5:5-20:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d92bad0a8d2f22f75c554e6c0ffc2b83\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d92bad0a8d2f22f75c554e6c0ffc2b83\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\0eb0da64d63ca496fed27f70dfebd65e\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\0eb0da64d63ca496fed27f70dfebd65e\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d36dcddd488d24df95a8054cbd09f7d0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d36dcddd488d24df95a8054cbd09f7d0\AndroidManifest.xml:22:5-23:19
 	android:appComponentFactory
-		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\9f15737dbc13d8b6d45997070b573f0c\AndroidManifest.xml:22:18-91
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\0eb0da64d63ca496fed27f70dfebd65e\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:10:9-35
 	android:label
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:8:9-41
 	android:roundIcon
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:9:9-54
 	android:icon
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:7:9-43
 	android:allowBackup
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:11:9-40
 	android:name
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:12:9-61
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:12:9-61
 activity#com.example.jsonparsertest.MainActivity
-ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:13:9-19:20
+ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:13:9-19:20
 	android:name
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:13:19-47
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:13:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:14:13-18:29
+ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:14:13-18:29
 action#android.intent.action.MAIN
-ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:15:17-69
+ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:15:17-69
 	android:name
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:15:25-66
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:15:25-66
 category#android.intent.category.LAUNCHER
-ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:17:17-77
+ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:17:17-77
 	android:name
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:17:27-74
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml:17:27-74
 uses-sdk
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\30683f9fad791f6cf712ca93397d645d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\30683f9fad791f6cf712ca93397d645d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d39ef3dc49be57cdfe11d283a29e5814\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d39ef3dc49be57cdfe11d283a29e5814\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\ce33ae1d0728d944e1c3035ed0d9c0aa\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\ce33ae1d0728d944e1c3035ed0d9c0aa\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\96d5611e55bf48baa216caac9d1bfecf\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\96d5611e55bf48baa216caac9d1bfecf\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\87eda1b84939e1ee4336c5199545b3cc\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\87eda1b84939e1ee4336c5199545b3cc\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\93030ce161b98b50d869b64e97384d13\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\93030ce161b98b50d869b64e97384d13\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\60627ceccc12063a527370cd609df1cc\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\60627ceccc12063a527370cd609df1cc\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8bcd128219d07affbc5f53c6e81b095c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8bcd128219d07affbc5f53c6e81b095c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\38ed8b5bb116952cc71456a18402c2a2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\38ed8b5bb116952cc71456a18402c2a2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e9c145bb6679587eef9670b42c53d963\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e9c145bb6679587eef9670b42c53d963\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\7c653a551be1dbcfb272515bc939241b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\7c653a551be1dbcfb272515bc939241b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d7d030490a0535ff5027b08a4efff17c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d7d030490a0535ff5027b08a4efff17c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e017a32c5dceaff4a91bacbf17bbaf4a\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e017a32c5dceaff4a91bacbf17bbaf4a\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\b2495303b08805b4267000526506e8d1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\b2495303b08805b4267000526506e8d1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\bd7fcc437170e7ee284f4935311f7b95\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\bd7fcc437170e7ee284f4935311f7b95\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d723484191d001059a66cff73a887630\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\d723484191d001059a66cff73a887630\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\9f15737dbc13d8b6d45997070b573f0c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\9f15737dbc13d8b6d45997070b573f0c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\165389d42ef95f672dc3e3efd0313f1b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\165389d42ef95f672dc3e3efd0313f1b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\2f51fe3341fd194ef5d386cc851abb3b\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\2f51fe3341fd194ef5d386cc851abb3b\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8444125e8f177f9879967d39f789cc4d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8444125e8f177f9879967d39f789cc4d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e514dd286d11df23912b05fe95bf3941\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e514dd286d11df23912b05fe95bf3941\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\a85176bd0e58e1d9c40b78b36d7a8102\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\a85176bd0e58e1d9c40b78b36d7a8102\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8e0f840c85ebe0b7e7f8f3fc58e298b1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8e0f840c85ebe0b7e7f8f3fc58e298b1\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\967c62f413eec74715067251b840bc77\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\967c62f413eec74715067251b840bc77\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e3488087ebd143a09574096574903aa4\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e3488087ebd143a09574096574903aa4\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8e356d6a299008664e6e8654391a6cca\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\8e356d6a299008664e6e8654391a6cca\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\a0d5e2539562808d55990745ce7458f1\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\a0d5e2539562808d55990745ce7458f1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e0d912dbc0f02fb52e38e26df76fdf2e\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\ardelato\.gradle\caches\transforms-2\files-2.1\e0d912dbc0f02fb52e38e26df76fdf2e\AndroidManifest.xml:20:5-44
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\07c780e2d084fdea8bb377081eecfe83\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\07c780e2d084fdea8bb377081eecfe83\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d92bad0a8d2f22f75c554e6c0ffc2b83\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d92bad0a8d2f22f75c554e6c0ffc2b83\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\cced98f680075d18ab5d894a46c666b7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\cced98f680075d18ab5d894a46c666b7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\e61eb260256ab882417546185419aed3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\e61eb260256ab882417546185419aed3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ec59155f30d7fbefdd8eb83c9e2bb038\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ec59155f30d7fbefdd8eb83c9e2bb038\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\bd69e5864bd483081d6ce2a8681c6fdd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\bd69e5864bd483081d6ce2a8681c6fdd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fd90af826b2c714657bdd6f9f5308b16\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fd90af826b2c714657bdd6f9f5308b16\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcb0deac512c53d90620089e367e5414\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcb0deac512c53d90620089e367e5414\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\f93d316ccb39dd7afb38270fad316c89\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\f93d316ccb39dd7afb38270fad316c89\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\92fc2c5db10c0a6924cf4108e3499345\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\92fc2c5db10c0a6924cf4108e3499345\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\2fb61c41e1559f8dc0b5928d84600d1b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\2fb61c41e1559f8dc0b5928d84600d1b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4f71a19f315d50a3cdbf03cf9df1a99a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4f71a19f315d50a3cdbf03cf9df1a99a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\63da5a99404e9b0bebe44a3ec612651d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\63da5a99404e9b0bebe44a3ec612651d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4aff2a3f2e4fc7f938e9a59d984400c3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4aff2a3f2e4fc7f938e9a59d984400c3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\e610721aa63d73e291e9cabc0fec45c5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\e610721aa63d73e291e9cabc0fec45c5\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\67bd0431a54d2ce3ac51ab005558a059\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\67bd0431a54d2ce3ac51ab005558a059\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\0eb0da64d63ca496fed27f70dfebd65e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\0eb0da64d63ca496fed27f70dfebd65e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d36dcddd488d24df95a8054cbd09f7d0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\d36dcddd488d24df95a8054cbd09f7d0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\335a800233dcf3832cba48148062d85c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\335a800233dcf3832cba48148062d85c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\5726e6ee18be51dffba2a7e34a4a1681\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\5726e6ee18be51dffba2a7e34a4a1681\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\9db89ed04327a6c3a730a9069394d593\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\9db89ed04327a6c3a730a9069394d593\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1f343e04e397a4d9f5ac87b37fefcced\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1f343e04e397a4d9f5ac87b37fefcced\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\854bdd539cd56da2859e0ef561fe4d0b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\854bdd539cd56da2859e0ef561fe4d0b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ef5b4644efaeae94615049bb413d587c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ef5b4644efaeae94615049bb413d587c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\99e373dc2265f6f2fb235dc464a4201b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\99e373dc2265f6f2fb235dc464a4201b\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4d2796e2f432b2aea6557e8faff60aa5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4d2796e2f432b2aea6557e8faff60aa5\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\a4276b0adf3ab454b2bae93865251ff6\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\a4276b0adf3ab454b2bae93865251ff6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ef0b99d04c589e0d7d15322638a28e68\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\ef0b99d04c589e0d7d15322638a28e68\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
 	android:maxSdkVersion
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		ADDED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
-		INJECTED from H:\BS Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\angel\OneDrive\Documents\GitHub\handymaps\app\src\main\AndroidManifest.xml
