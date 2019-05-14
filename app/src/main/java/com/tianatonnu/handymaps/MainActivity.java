@@ -141,8 +141,6 @@ public class MainActivity extends AppCompatActivity implements
         mapView.getMapAsync(this);
 
         centerBtn = findViewById(R.id.center_toggle);
-        //startButton = findViewById(R.id.startButton);
-        //findButton = findViewById(R.id.findButton);
         routeBtn = findViewById(R.id.routeButton);
         clearBtn = findViewById(R.id.clearButton);
 
