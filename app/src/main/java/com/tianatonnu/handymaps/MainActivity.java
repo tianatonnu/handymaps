@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements
             navigationMapRoute.removeRoute();
         routeBtn.setEnabled(true);
         routeBtn.setVisibility(View.VISIBLE);
-        routeBtn.setBackgroundColor(getResources().getColor(R.color.mapbox_blue));
+        routeBtn.setBackgroundColor(getResources().getColor(R.color.mapboxBlue));
         routeBtn.setText(getResources().getString(R.string.find));
         route = 1;
         clearBtn.setEnabled(true);
@@ -593,7 +593,7 @@ public class MainActivity extends AppCompatActivity implements
                     // Enable the route and clear buttons
                     routeBtn.setEnabled(true);
                     routeBtn.setVisibility(View.VISIBLE);
-                    routeBtn.setBackgroundColor(getResources().getColor(R.color.mapbox_blue));
+                    routeBtn.setBackgroundColor(getResources().getColor(R.color.mapboxBlue));
                     routeBtn.setText(getResources().getString(R.string.find));
                     route = 1;
                     clearBtn.setEnabled(true);
