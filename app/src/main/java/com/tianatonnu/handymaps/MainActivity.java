@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements
     private Button findButton;
     private Button startButton;
     private Button clearBtn;
+    private Button routeBtn;
     private FloatingActionButton centerBtn;
     private int center = 0;
 
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements
     private TextView tv;
     private SearchView searchView;
     private ListView listView;
-    private int clear = 0, start = 0, find = 0;
+    private int clear = 0, start = 0, find = 0, route = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,8 +141,9 @@ public class MainActivity extends AppCompatActivity implements
         mapView.getMapAsync(this);
 
         centerBtn = findViewById(R.id.center_toggle);
-        startButton = findViewById(R.id.startButton);
-        findButton = findViewById(R.id.findButton);
+        //startButton = findViewById(R.id.startButton);
+        //findButton = findViewById(R.id.findButton);
+        routeBtn = findViewById(R.id.routeButton);
         clearBtn = findViewById(R.id.clearButton);
 
         // Get the data
@@ -164,13 +166,6 @@ public class MainActivity extends AppCompatActivity implements
         Collections.addAll(allData, classRoomStrings);
         Collections.addAll(allData, courseStrings);
 
-        // Get the intent, verify the action and get the query
-        /*Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            doMySearch(query);
-        }*/
-
         list();
     }
 
@@ -188,30 +183,28 @@ public class MainActivity extends AppCompatActivity implements
 
                         mapboxMap.addOnMapClickListener(MainActivity.this);
 
-                        findButton.setOnClickListener(new View.OnClickListener() {
+                        routeBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                // Find route
-                                getRoute(originPoint, destinationPoint);
-                                findButton.setVisibility(View.INVISIBLE);
-                                findButton.setEnabled(false);
-                                find = 0;
-                                startButton.setEnabled(true);
-                                startButton.setVisibility(View.VISIBLE);
-                                start = 1;
-                            }
-                        });
-
-                        startButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                boolean simulateRoute = false;
-                                NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                                        .directionsRoute(currentRoute)
-                                        .shouldSimulateRoute(simulateRoute)
-                                        .build();
-                                // Call this method with Context from within an Activity
-                                NavigationLauncher.startNavigation(MainActivity.this, options);
+                                // Need to calculate route
+                                if (routeBtn.getText().equals(getResources().getString(R.string.find)))
+                                {
+                                    // Find route
+                                    getRoute(originPoint, destinationPoint);
+                                    routeBtn.setText(getResources().getString(R.string.start));
+                                    routeBtn.setBackgroundColor(getResources().getColor(R.color.startGreen));
+                                }
+                                // Need to start route
+                                else
+                                {
+                                    boolean simulateRoute = false;
+                                    NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                                            .directionsRoute(currentRoute)
+                                            .shouldSimulateRoute(simulateRoute)
+                                            .build();
+                                    // Call this method with Context from within an Activity
+                                    NavigationLauncher.startNavigation(MainActivity.this, options);
+                                }
                             }
                         });
 
@@ -229,13 +222,11 @@ public class MainActivity extends AppCompatActivity implements
                                     layer.setProperties(visibility(NONE));
                                 }
 
-                                // Reset the clear and routing buttons
-                                startButton.setEnabled(false);
-                                startButton.setVisibility(View.INVISIBLE);
-                                start = 0;
-                                findButton.setEnabled(false);
-                                findButton.setVisibility(View.INVISIBLE);
-                                find = 0;
+                                routeBtn.setText(getResources().getString(R.string.find));
+                                routeBtn.setBackgroundColor(getResources().getColor(R.color.mapbox_blue));
+                                routeBtn.setEnabled(false);
+                                routeBtn.setVisibility(View.INVISIBLE);
+                                route = 0;
                                 clearBtn.setEnabled(false);
                                 clearBtn.setVisibility(View.INVISIBLE);
                                 clear = 0;
@@ -304,14 +295,11 @@ public class MainActivity extends AppCompatActivity implements
         // Remove the current route
         if (navigationMapRoute != null)
             navigationMapRoute.removeRoute();
-        // Disable the route start button
-        startButton.setEnabled(false);
-        startButton.setVisibility(View.INVISIBLE);
-        start = 0;
-        // Enable the find route and clear buttons
-        findButton.setEnabled(true);
-        findButton.setVisibility(View.VISIBLE);
-        find = 1;
+        routeBtn.setEnabled(true);
+        routeBtn.setVisibility(View.VISIBLE);
+        routeBtn.setBackgroundColor(getResources().getColor(R.color.mapbox_blue));
+        routeBtn.setText(getResources().getString(R.string.find));
+        route = 1;
         clearBtn.setEnabled(true);
         clearBtn.setVisibility(View.VISIBLE);
         clear = 1;
@@ -450,15 +438,10 @@ public class MainActivity extends AppCompatActivity implements
                     clearBtn.setEnabled(true);
                     clearBtn.setVisibility(View.VISIBLE);
                 }
-                if (find == 1)
+                if (route == 1)
                 {
-                    findButton.setEnabled(true);
-                    findButton.setVisibility(View.VISIBLE);
-                }
-                if (start == 1)
-                {
-                    startButton.setEnabled(true);
-                    startButton.setVisibility(View.VISIBLE);
+                    routeBtn.setEnabled(false);
+                    routeBtn.setVisibility(View.VISIBLE);
                 }
                 return false;
             }
@@ -476,10 +459,8 @@ public class MainActivity extends AppCompatActivity implements
                 findViewById(R.id.ListView).setVisibility(View.VISIBLE);
 
                 // Hide all buttons
-                startButton.setEnabled(false);
-                startButton.setVisibility(View.INVISIBLE);
-                findButton.setEnabled(false);
-                findButton.setVisibility(View.INVISIBLE);
+                routeBtn.setEnabled(false);
+                routeBtn.setVisibility(View.INVISIBLE);
                 clearBtn.setEnabled(false);
                 clearBtn.setVisibility(View.INVISIBLE);
                 centerBtn.setVisibility(View.INVISIBLE);
@@ -488,11 +469,29 @@ public class MainActivity extends AppCompatActivity implements
                 if (newText != null && !newText.isEmpty())
                 {
                     // Filter options
+                    // Make this more robust
                     ArrayList<String> lstFound = new ArrayList<>();
-                    for (String item:allData)
-                        if (item.toLowerCase().contains(newText.toLowerCase()))
-                            lstFound.add(item);
 
+                    // Split search into separate words (key words)
+                    String[] keyWords = newText.split(" ");
+                    for (String item:allData)
+                    {
+                        int valid = 1;
+                        for (String word:keyWords)
+                        {
+                            // item does not contain the key word
+                            if (!item.toLowerCase().contains(word.toLowerCase()))
+                            {
+                                valid = 0;
+                                break;
+                            }
+                        }
+                        // Item contains all key words
+                        if (valid == 1)
+                        {
+                            lstFound.add(item);
+                        }
+                    }
                     // Return the filtered results
                     adapter = new ArrayAdapter<>(
                             MainActivity.this,
@@ -593,14 +592,12 @@ public class MainActivity extends AppCompatActivity implements
                     // Remove the current route
                     if (navigationMapRoute != null)
                         navigationMapRoute.removeRoute();
-                    // Disable the route start button
-                    startButton.setEnabled(false);
-                    startButton.setVisibility(View.INVISIBLE);
-                    start = 0;
-                    // Enable the find route and clear buttons
-                    findButton.setEnabled(true);
-                    findButton.setVisibility(View.VISIBLE);
-                    find = 1;
+                    // Enable the route and clear buttons
+                    routeBtn.setEnabled(true);
+                    routeBtn.setVisibility(View.VISIBLE);
+                    routeBtn.setBackgroundColor(getResources().getColor(R.color.mapbox_blue));
+                    routeBtn.setText(getResources().getString(R.string.find));
+                    route = 1;
                     clearBtn.setEnabled(true);
                     clearBtn.setVisibility(View.VISIBLE);
                     clear = 1;

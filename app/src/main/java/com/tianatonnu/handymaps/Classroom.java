@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Classroom {
+public class Classroom /*implements Comparable<Classroom>*/ {
     private String classRoomBldgName;
     private String classRoomBldgNumber;
     private String roomNumber;
@@ -40,4 +40,9 @@ public class Classroom {
         card += "Room: " + roomNumber;
         return card;
     }
+
+    /*public int compareTo(Classroom other)
+    {
+        return 0;
+    }*/
 }

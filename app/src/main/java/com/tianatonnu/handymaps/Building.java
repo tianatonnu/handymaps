@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Building {
+public class Building /*implements Comparable<Building>*/{
     private double[] location = new double[2];
     private String bldgName;
     private String bldgNumber;
@@ -32,4 +32,9 @@ public class Building {
     public String createCard(){
         return (bldgNumber + ": " + bldgName + "\n");
     }
+
+    /*public int compareTo(Building other)
+    {
+        return 0;
+    }*/
 }

@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <Button
-        android:id="@+id/findButton"
+        android:id="@+id/routeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -41,23 +41,6 @@
         android:enabled="false"
         android:visibility="invisible"
         android:text="@string/find"
-        android:textColor="@color/mapboxWhite"
-        mapbox:layout_constraintStart_toStartOf="parent"
-        mapbox:layout_constraintBottom_toBottomOf="parent"
-        mapbox:layout_constraintLeft_toLeftOf="parent"/>
-
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="46dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/mapboxBlue"
-        android:enabled="false"
-        android:visibility="invisible"
-        android:text="@string/start"
         android:textColor="@color/mapboxWhite"
         mapbox:layout_constraintStart_toStartOf="parent"
         mapbox:layout_constraintBottom_toBottomOf="parent"

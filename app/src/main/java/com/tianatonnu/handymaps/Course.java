@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Course {
+public class Course /*implements Comparable<Course>*/ {
     private String dept;
     private String courseNumber;
     private String sectionNumber;
@@ -65,4 +65,9 @@ public class Course {
         card += "Time: " + rawTime;
         return card;
     }
+
+    /*public int compareTo(Course other)
+    {
+        return 0;
+    }*/
 }
