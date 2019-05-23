@@ -4,7 +4,7 @@
     xmlns:mapbox="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/search"
-        android:title="Search"
+        android:title="@string/title"
         android:icon="@drawable/ic_search_black_24px"
         mapbox:showAsAction="always"
         mapbox:actionViewClass="android.widget.SearchView" />

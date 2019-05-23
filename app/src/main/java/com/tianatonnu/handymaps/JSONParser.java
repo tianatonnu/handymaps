@@ -68,8 +68,8 @@ public class JSONParser extends Application {
 
 
             // Loop through the JSON Array to get each Course Info
-            for (int x = 0; x < numberOfSections; x++) {
-                course = courses.getJSONObject(x);
+            for (int i = 0; i < numberOfSections; i++) {
+                course = courses.getJSONObject(i);
 
                 //Parsing for Location
                 courseLocationJSON = course.getJSONObject("geometry");
@@ -90,7 +90,7 @@ public class JSONParser extends Application {
                 courseSectionNumber = courseInfo.getString("sectionNumber");
 
                 //Initialize Classroom Object with Information
-                cpCourses[x] = new Course(courseDept, courseNumber, courseSectionNumber, courseName, courseBldg, courseRoom, courseLocation, rawCourseTime);
+                cpCourses[i] = new Course(courseDept, courseNumber, courseSectionNumber, courseName, courseBldg, courseRoom, courseLocation, rawCourseTime);
             }
 
             //Printing out each course Card
@@ -151,8 +151,8 @@ public class JSONParser extends Application {
             cpBuildings = new Building[buildings.length()];
             numberOfBuildings = buildings.length();
 
-            for (int x = 0; x < numberOfBuildings; x++) {
-                building = buildings.getJSONObject(x);
+            for (int i = 0; i < numberOfBuildings; i++) {
+                building = buildings.getJSONObject(i);
 
                 //Parsing for Location
                 buildingLocationJSON = building.getJSONObject("geometry");
@@ -168,7 +168,7 @@ public class JSONParser extends Application {
                 buildingNumber = buildingInfo.getString("ref_en");
 
                 //Initialize Building Object with Information
-                cpBuildings[x] = new Building(buildingLocation, buildingName, buildingNumber);
+                cpBuildings[i] = new Building(buildingLocation, buildingName, buildingNumber);
             }
 
             //Printing out each building card
@@ -231,8 +231,8 @@ public class JSONParser extends Application {
 
             Log.d("Number of classrooms is: ", String.valueOf(numberOfClassrooms));
 
-            for (int x = 0; x < numberOfClassrooms; x++) {
-                classroom = classrooms.getJSONObject(x);
+            for (int i = 0; i < numberOfClassrooms; i++) {
+                classroom = classrooms.getJSONObject(i);
 
                 //Parsing for Location
                 classroomLocationJSON = classroom.getJSONObject("geometry");
@@ -249,7 +249,7 @@ public class JSONParser extends Application {
                 classroomNumber = classroomInfo.getString("room");
 
                 //Initialize Classroom Object with Information
-                cpClassrooms[x] = new Classroom(classroomBldgName, classroomBldgNumber, classroomNumber, classroomLocation);
+                cpClassrooms[i] = new Classroom(classroomBldgName, classroomBldgNumber, classroomNumber, classroomLocation);
             }
 
             //Printing out each building card
