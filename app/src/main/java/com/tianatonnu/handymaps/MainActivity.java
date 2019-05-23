@@ -368,30 +368,9 @@ public class MainActivity extends AppCompatActivity implements
                 //adapter.getFilter().filter(newText);
                 if (newText != null && !newText.isEmpty())
                 {
-                    // Filter options
-                    // Make this more robust
-                    ArrayList<String> lstFound = new ArrayList<>();
+                    // Filter search
+                    ArrayList<String> lstFound = Search.filter(newText, allData);
 
-                    // Split search into separate words (key words)
-                    String[] keyWords = newText.split(" ");
-                    for (String item:allData)
-                    {
-                        int valid = 1;
-                        for (String word:keyWords)
-                        {
-                            // item does not contain the key word
-                            if (!item.toLowerCase().contains(word.toLowerCase()))
-                            {
-                                valid = 0;
-                                break;
-                            }
-                        }
-                        // Item contains all key words
-                        if (valid == 1)
-                        {
-                            lstFound.add(item);
-                        }
-                    }
                     // Return the filtered results
                     adapter = new ArrayAdapter<>(
                             MainActivity.this,
@@ -423,55 +402,10 @@ public class MainActivity extends AppCompatActivity implements
                 findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
                 String card = adapter.getItem(position);
                 Log.d("Search", card);
-                int found = 0;
 
-                // Search buildings
-                for (Building building:buildings)
-                {
-                    if (building.createCard().equals(card))
-                    {
-                        destinationPoint = Point.fromLngLat(building.getBuildingLong(), building.getBuildingLat());
-                        found = 1;
-                        //Log.d("Search", building.createCard());
-                        Log.d("Search", "/n" + building.createCard() + " Longitude: " + destinationPoint.longitude() + " Latitude: " + destinationPoint.latitude());
-                        break;
-                    }
-                }
+                destinationPoint = Search.findCoordinates(buildings, courses, classRooms, card);
 
-                // Search courses
-                for (Course course:courses)
-                {
-                    // No need to search the courses
-                    if (found == 1)
-                        break;
-                    // Need to search the courses
-                    if (course.createCard().equals(card))
-                    {
-                        destinationPoint = Point.fromLngLat(course.getCourseLong(), course.getCourseLat());
-                        found = 1;
-                        //Log.d("Search", course.createCard());
-                        Log.d("Search", "/n" + course.createCard() + " Longitude: " + destinationPoint.longitude() + " Latitude: " + destinationPoint.latitude());
-                        break;
-                    }
-                }
-
-                // Search classRooms
-                for (Classroom classroom:classRooms)
-                {
-                    // No need to search the classRooms
-                    if (found == 1)
-                        break;
-                    // Need to search the classRooms
-                    if (classroom.createCard().equals(card))
-                    {
-                        destinationPoint = Point.fromLngLat(classroom.getClassLong(), classroom.getClassLat());
-                        found = 1;
-                        //Log.d("Search", classroom.createCard());
-                        Log.d("Search", "/n" + classroom.createCard() + " Longitude: " + destinationPoint.longitude() + " Latitude: " + destinationPoint.latitude());
-                        break;
-                    }
-                }
-
+                // Update map
                 Style style = mapboxMap.getStyle();
                 if (style != null)
                 {
