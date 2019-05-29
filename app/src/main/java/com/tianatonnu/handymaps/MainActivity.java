@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.mapbox.android.core.permissions.PermissionsListener;
@@ -97,9 +98,13 @@ public class MainActivity extends AppCompatActivity implements
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute navigationMapRoute;
     private Point destinationPoint;
+    private Point originPoint;
 
     // variables needed to initialize navigation
+    private Button findButton;
+    private Button startButton;
     private Button clearBtn;
+    private Button routeBtn;
     private FloatingActionButton centerBtn;
     private int center = 0;
 
@@ -116,8 +121,10 @@ public class MainActivity extends AppCompatActivity implements
 
     // Search variables
     private ArrayAdapter<String> adapter;
+    private TextView tv;
     private SearchView searchView;
-    private int clear = 0;
+    private ListView listView;
+    private int clear = 0, route = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,11 +137,15 @@ public class MainActivity extends AppCompatActivity implements
         // This contains the MapView in XML and needs to be called after the access token is configured.
         setContentView(R.layout.activity_main);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
         centerBtn = findViewById(R.id.center_toggle);
+        routeBtn = findViewById(R.id.routeButton);
         clearBtn = findViewById(R.id.clearButton);
 
         // Get the data
@@ -174,9 +185,38 @@ public class MainActivity extends AppCompatActivity implements
 
                         mapboxMap.addOnMapClickListener(MainActivity.this);
 
+                        routeBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Need to calculate route
+                                if (routeBtn.getText().equals(getResources().getString(R.string.find)))
+                                {
+                                    // Find route
+                                    getRoute(originPoint, destinationPoint);
+                                    routeBtn.setText(getResources().getString(R.string.start));
+                                    routeBtn.setBackgroundColor(getResources().getColor(R.color.startGreen));
+                                }
+                                // Need to start route
+                                else
+                                {
+                                    boolean simulateRoute = false;
+                                    NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                                            .directionsRoute(currentRoute)
+                                            .shouldSimulateRoute(simulateRoute)
+                                            .build();
+                                    // Call this method with Context from within an Activity
+                                    NavigationLauncher.startNavigation(MainActivity.this, options);
+                                }
+                            }
+                        });
+
                         clearBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                // Remove the route
+                                if (navigationMapRoute != null)
+                                    navigationMapRoute.removeRoute();
+
                                 // Remove the way point marker
                                 Layer layer = mapboxMap.getStyle().getLayer("destination-symbol-layer-id");
                                 if (layer != null)
@@ -184,6 +224,11 @@ public class MainActivity extends AppCompatActivity implements
                                     layer.setProperties(visibility(NONE));
                                 }
 
+                                routeBtn.setText(getResources().getString(R.string.find));
+                                routeBtn.setBackgroundColor(getResources().getColor(R.color.mapbox_blue));
+                                routeBtn.setEnabled(false);
+                                routeBtn.setVisibility(View.INVISIBLE);
+                                route = 0;
                                 clearBtn.setEnabled(false);
                                 clearBtn.setVisibility(View.INVISIBLE);
                                 clear = 0;
@@ -240,16 +285,70 @@ public class MainActivity extends AppCompatActivity implements
         }
 
         destinationPoint = Point.fromLngLat(point.getLongitude(), point.getLatitude());
- 
+        originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                locationComponent.getLastKnownLocation().getLatitude());
+
         GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
         if (source != null) {
             source.setGeoJson(Feature.fromGeometry(destinationPoint));
         }
 
+        //getRoute(originPoint, destinationPoint);
+        // Remove the current route
+        if (navigationMapRoute != null)
+            navigationMapRoute.removeRoute();
+        routeBtn.setEnabled(true);
+        routeBtn.setVisibility(View.VISIBLE);
+        routeBtn.setBackgroundColor(getResources().getColor(R.color.mapboxBlue));
+        routeBtn.setText(getResources().getString(R.string.find));
+        route = 1;
         clearBtn.setEnabled(true);
         clearBtn.setVisibility(View.VISIBLE);
         clear = 1;
+
+        // Clear search bar if it is up
+        searchView.clearFocus();
+        findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
+
         return true;
+    }
+
+    private void getRoute(Point origin, Point destination) {
+        NavigationRoute.builder(this)
+                .accessToken(Mapbox.getAccessToken())
+                .origin(origin)
+                .destination(destination)
+                .profile(DirectionsCriteria.PROFILE_WALKING)
+                .build()
+                .getRoute(new Callback<DirectionsResponse>() {
+                    @Override
+                    public void onResponse(Call<DirectionsResponse> call, Response<DirectionsResponse> response) {
+                        // You can get the generic HTTP info about the response
+                        Log.d(TAG, "Response code: " + response.code());
+                        if (response.body() == null) {
+                            Log.e(TAG, "No routes found, make sure you set the right user and access token.");
+                            return;
+                        } else if (response.body().routes().size() < 1) {
+                            Log.e(TAG, "No routes found");
+                            return;
+                        }
+
+                        currentRoute = response.body().routes().get(0);
+
+                        // Draw the route on the map
+                        if (navigationMapRoute != null) {
+                            navigationMapRoute.removeRoute();
+                        } else {
+                            navigationMapRoute = new NavigationMapRoute(null, mapView, mapboxMap, R.style.NavigationMapRoute);
+                        }
+                        navigationMapRoute.addRoute(currentRoute);
+                    }
+
+                    @Override
+                    public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
+                        Log.e(TAG, "Error: " + throwable.getMessage());
+                    }
+                });
     }
 
     @SuppressWarnings( {"MissingPermission"})
@@ -328,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         MenuItem item = menu.findItem(R.id.search);
-        /*SearchView*/ searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView = (SearchView) MenuItemCompat.getActionView(item);
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setQueryHint(getResources().getString(R.string.hint));
@@ -346,6 +445,11 @@ public class MainActivity extends AppCompatActivity implements
                     clearBtn.setEnabled(true);
                     clearBtn.setVisibility(View.VISIBLE);
                 }
+                if (route == 1)
+                {
+                    routeBtn.setEnabled(true);
+                    routeBtn.setVisibility(View.VISIBLE);
+                }
                 return false;
             }
         });
@@ -361,6 +465,9 @@ public class MainActivity extends AppCompatActivity implements
                 // Display results
                 findViewById(R.id.ListView).setVisibility(View.VISIBLE);
 
+                // Hide all buttons
+                routeBtn.setEnabled(false);
+                routeBtn.setVisibility(View.INVISIBLE);
                 clearBtn.setEnabled(false);
                 clearBtn.setVisibility(View.INVISIBLE);
                 centerBtn.setVisibility(View.INVISIBLE);
@@ -370,7 +477,7 @@ public class MainActivity extends AppCompatActivity implements
                 {
                     // Filter search
                     ArrayList<String> lstFound = Search.filter(newText, allData);
-
+                    
                     // Return the filtered results
                     adapter = new ArrayAdapter<>(
                             MainActivity.this,
@@ -402,10 +509,9 @@ public class MainActivity extends AppCompatActivity implements
                 findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
                 String card = adapter.getItem(position);
                 Log.d("Search", card);
-
+                
                 destinationPoint = Search.findCoordinates(buildings, courses, classRooms, card);
 
-                // Update map
                 Style style = mapboxMap.getStyle();
                 if (style != null)
                 {
@@ -413,6 +519,9 @@ public class MainActivity extends AppCompatActivity implements
                     if (layer != null) {
                         layer.setProperties(visibility(VISIBLE));
                     }
+
+                    originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                            locationComponent.getLastKnownLocation().getLatitude());
 
                     GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
                     if (source != null) {
@@ -424,6 +533,11 @@ public class MainActivity extends AppCompatActivity implements
                     if (navigationMapRoute != null)
                         navigationMapRoute.removeRoute();
                     // Enable the route and clear buttons
+                    routeBtn.setEnabled(true);
+                    routeBtn.setVisibility(View.VISIBLE);
+                    routeBtn.setBackgroundColor(getResources().getColor(R.color.mapboxBlue));
+                    routeBtn.setText(getResources().getString(R.string.find));
+                    route = 1;
                     clearBtn.setEnabled(true);
                     clearBtn.setVisibility(View.VISIBLE);
                     clear = 1;
@@ -435,6 +549,18 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
         return true;
     }
+
+    /* Added by Tatjana 05/15. */
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.schedule:
+                    startActivity(new Intent(MainActivity.this, SchedulePage.class));
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }
 
 
     @Override

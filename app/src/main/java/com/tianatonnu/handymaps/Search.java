@@ -39,6 +39,7 @@ public class Search {
     public static Point findCoordinates(Building[] buildings, Course[] courses, Classroom[] classRooms, String card)
     {
         Point point = null;
+
         // Search buildings
         for (Building building:buildings)
         {
@@ -80,5 +81,20 @@ public class Search {
         }
 
         return point;
+    }
+
+    public static Course findCourse(Course[] courses, String name)
+    {
+        Course course = null;
+        for (Course c:courses)
+        {
+            if (c.createCard().equals(name))
+            {
+                course = c;
+                break;
+            }
+        }
+
+        return course;
     }
 }

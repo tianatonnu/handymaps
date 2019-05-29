@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name="com.tianatonnu.handymaps.JSONParser">
+
+        <activity android:name=".SchedulePage"
+            android:label="Schedule Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tianatonnu.handymaps.MainActivity" />
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
