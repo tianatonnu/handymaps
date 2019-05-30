@@ -601,7 +601,7 @@ public class MainActivity extends AppCompatActivity implements
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.schedule:
-                    startActivity(new Intent(MainActivity.this, SchedulePage.class));
+                    startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
                     return true;
                 default:
                     return super.onOptionsItemSelected(item);

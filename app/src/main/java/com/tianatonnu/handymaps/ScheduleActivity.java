@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class SchedulePage extends AppCompatActivity {
+public class ScheduleActivity extends AppCompatActivity {
 
     // For displaying the search bar and serach results
     private ArrayAdapter<String> searchAdapter;
@@ -208,7 +208,7 @@ public class SchedulePage extends AppCompatActivity {
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SchedulePage.this, MainActivity.class);
+                Intent intent = new Intent(ScheduleActivity.this, MainActivity.class);
                 Point point = Search.findCoordinates(locations, prevCourseName);
                 DestinationPoint destinationPoint = new DestinationPoint(point.latitude(), point.longitude());
                 intent.putExtra("classLocation", destinationPoint);
@@ -365,7 +365,7 @@ public class SchedulePage extends AppCompatActivity {
     private void setSearchAdapter(String[] results)
     {
         searchAdapter = new ArrayAdapter<>(
-                SchedulePage.this,
+                ScheduleActivity.this,
                 android.R.layout.simple_list_item_1,
                 results);
         searchListView.setAdapter(searchAdapter);
@@ -375,7 +375,7 @@ public class SchedulePage extends AppCompatActivity {
     private void setSearchAdapter(ArrayList<String> results)
     {
         searchAdapter = new ArrayAdapter<>(
-                SchedulePage.this,
+                ScheduleActivity.this,
                 android.R.layout.simple_list_item_1,
                 results);
         searchListView.setAdapter(searchAdapter);
@@ -385,7 +385,7 @@ public class SchedulePage extends AppCompatActivity {
     private void setScheduleAdapter()
     {
         scheduleAdapter = new ArrayAdapter<>(
-                SchedulePage.this,
+                ScheduleActivity.this,
                 android.R.layout.simple_list_item_1,
                 schedule.getCourseNames());
         scheduleListView.setAdapter(scheduleAdapter);

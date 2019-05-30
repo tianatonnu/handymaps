@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:name="com.tianatonnu.handymaps.JSONParser">
 
-        <activity android:name=".SchedulePage"
+        <activity android:name=".ScheduleActivity"
             android:label="Schedule Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
