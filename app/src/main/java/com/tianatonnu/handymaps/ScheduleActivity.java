@@ -119,7 +119,12 @@ public class ScheduleActivity extends AppCompatActivity {
                 if (hasFocus)
                 {
                     hideButtons();
+                    showBtns = false;
                     hideSave();
+                    if (prevView != null) {
+                        // Set previously selected course back to original background
+                        prevView.setBackgroundColor(getResources().getColor(R.color.activityBackground));
+                    }
                 }
             }
         });
@@ -200,6 +205,7 @@ public class ScheduleActivity extends AppCompatActivity {
         scheduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //closeSearchBar();
                 if (prevView != null)
                 {
                     // Set previously selected course back to original background
