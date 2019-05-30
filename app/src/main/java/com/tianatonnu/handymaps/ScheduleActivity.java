@@ -107,6 +107,18 @@ public class ScheduleActivity extends AppCompatActivity {
             }
         });
 
+        // Hide the buttons when the search bar opens
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                {
+                    hideButtons();
+                    hideSave();
+                }
+            }
+        });
+
         // Set text listener for search bar to enable search filtering and suggestions
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -150,18 +162,30 @@ public class ScheduleActivity extends AppCompatActivity {
                 String courseName = searchAdapter.getItem(position);
                 Log.d("Schedule", courseName);
 
-                if (!schedule.contains(courseName))
-                    schedule.addCourse(Search.findCourse(courses, courseName));
+                boolean newCourse = false;
+
+                newCourse = schedule.addCourse(courses, courseName);
 
                 // Update the schedule adapter to show the new course
                 setScheduleAdapter();
 
                 hideButtons();
+                showBtns = false;
                 prevCourseCard = -1;
                 prevCourseName = null;
                 prevView = null;
 
-                showSaveBtn();
+                if (newCourse)
+                {
+                    showSaveBtn();
+                    Toast toast = Toast.makeText(ScheduleActivity.this, "Course added to schedule", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                {
+                    Toast toast = Toast.makeText(ScheduleActivity.this, "Course already in schedule", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
 
                 closeSearchBar();
             }
@@ -171,11 +195,21 @@ public class ScheduleActivity extends AppCompatActivity {
         scheduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //if (prevCourseCard != -1)
                 if (prevView != null)
                 {
                     // Set previously selected course back to original background
                     prevView.setBackgroundColor(getResources().getColor(R.color.activityBackground));
+
+                    // Unselect the course
+                    if (prevView.equals(view))
+                    {
+                        prevView = null;
+                        prevCourseCard = -1;
+                        prevCourseName = null;
+                        hideButtons();
+
+                        return;
+                    }
                 }
 
                 prevView = view;
@@ -183,7 +217,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 prevCourseName = scheduleAdapter.getItem(position);
                 Log.d("Selecting", "Expected Card: " + prevCourseName);
                 view.setBackgroundColor(getResources().getColor(R.color.mapboxWhite));
-
                 showButtons();
             }
         });
@@ -198,6 +231,9 @@ public class ScheduleActivity extends AppCompatActivity {
                 // Update the schedule listview
                 setScheduleAdapter();
                 showSaveBtn();
+
+                Toast toast = Toast.makeText(ScheduleActivity.this, "Course removed from schedule", Toast.LENGTH_SHORT);
+                toast.show();
 
                 prevCourseCard = -1;
                 prevCourseName = null;
@@ -250,7 +286,12 @@ public class ScheduleActivity extends AppCompatActivity {
                 schedule.deleteSchedule();
                 setScheduleAdapter();
                 hideButtons();
+                showBtns = false;
                 showSaveBtn();
+
+                Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule deleted", Toast.LENGTH_SHORT);
+                toast.show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

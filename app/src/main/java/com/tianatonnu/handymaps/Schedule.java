@@ -1,5 +1,8 @@
 package com.tianatonnu.handymaps;
 
+import android.widget.Toast;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Schedule
@@ -30,10 +33,21 @@ public class Schedule
         return courseStrings;
     }
 
-    public void addCourse(Course course)
+    //public void addCourse(Course course)
+    public boolean addCourse(Course[] classes, String courseName)
     {
-        courses.add(course);
-        courseStrings.add(course.createCard());
+        Course course;
+        // Only want to add the course if it is already not in the schedule
+        if (!courseStrings.contains(courseName))
+        {
+            course = Search.findCourse(classes, courseName);
+            courses.add(course);
+            courseStrings.add(course.createCard());
+
+            return true;
+        }
+
+        return false;
     }
 
     public void removeCourse(String course)

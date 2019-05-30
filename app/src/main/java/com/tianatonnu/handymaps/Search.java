@@ -41,46 +41,7 @@ public class Search {
     {
         Point point = null;
 
-        // Search buildings
-        /*for (Building building:buildings)
-        {
-            if (building.createCard().equals(card))
-            {
-                point = com.mapbox.geojson.Point.fromLngLat(building.getLongitude(), building.getLatitude());
-                break;
-            }
-        }
-
-        // Search courses
-        for (Course course:courses)
-        {
-            // Location was found, do not need to search further
-            if (point != null)
-                return point;
-
-            // Need to still search for location
-            if (course.createCard().equals(card))
-            {
-                point = com.mapbox.geojson.Point.fromLngLat(course.getLongitude(), course.getLatitude());
-                break;
-            }
-        }
-
-        // Search classRooms
-        for (Classroom classroom:classRooms)
-        {
-            // Location was found, do not need to search further
-            if (point != null)
-                return point;
-
-            // Need to still search for location
-            if (classroom.createCard().equals(card))
-            {
-                point = com.mapbox.geojson.Point.fromLngLat(classroom.getLongitude(), classroom.getLatitude());
-                break;
-            }
-        }*/
-
+        // Search all locations for requested location
         for (Location location:locations)
         {
             if (location.createCard().equals(name))
