@@ -36,7 +36,7 @@ public class Classroom implements Location/*implements Comparable<Classroom>*/ {
 
     public String createCard(){
         String card = classRoomBldgNumber + "-" + roomNumber + "\n";
-        card += "Buidling: " + classRoomBldgName + "\n";
+        card += "Building: " + classRoomBldgName + "\n";
         card += "Room: " + roomNumber;
         return card;
     }
