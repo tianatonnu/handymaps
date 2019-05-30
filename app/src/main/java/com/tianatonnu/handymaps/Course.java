@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Course /*implements Comparable<Course>*/ {
+public class Course implements Location/*implements Comparable<Course>*/ {
     private String dept;
     private String courseNumber;
     private String sectionNumber;
@@ -50,11 +50,11 @@ public class Course /*implements Comparable<Course>*/ {
         return rawTime;
     }
 
-    public double getCourseLat(){
+    public double getLatitude(){
         return location[1];
     }
 
-    public double getCourseLong(){
+    public double getLongitude(){
         return location[0];
     }
 

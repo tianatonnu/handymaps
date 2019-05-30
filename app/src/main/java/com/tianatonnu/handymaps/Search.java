@@ -36,16 +36,17 @@ public class Search {
         return lstFound;
     }
 
-    public static Point findCoordinates(Building[] buildings, Course[] courses, Classroom[] classRooms, String card)
+    //public static Point findCoordinates(Building[] buildings, Course[] courses, Classroom[] classRooms, String card)
+    public static Point findCoordinates(ArrayList<Location> locations, String name)
     {
         Point point = null;
 
         // Search buildings
-        for (Building building:buildings)
+        /*for (Building building:buildings)
         {
             if (building.createCard().equals(card))
             {
-                point = com.mapbox.geojson.Point.fromLngLat(building.getBuildingLong(), building.getBuildingLat());
+                point = com.mapbox.geojson.Point.fromLngLat(building.getLongitude(), building.getLatitude());
                 break;
             }
         }
@@ -60,7 +61,7 @@ public class Search {
             // Need to still search for location
             if (course.createCard().equals(card))
             {
-                point = com.mapbox.geojson.Point.fromLngLat(course.getCourseLong(), course.getCourseLat());
+                point = com.mapbox.geojson.Point.fromLngLat(course.getLongitude(), course.getLatitude());
                 break;
             }
         }
@@ -75,7 +76,16 @@ public class Search {
             // Need to still search for location
             if (classroom.createCard().equals(card))
             {
-                point = com.mapbox.geojson.Point.fromLngLat(classroom.getClassLong(), classroom.getClassLat());
+                point = com.mapbox.geojson.Point.fromLngLat(classroom.getLongitude(), classroom.getLatitude());
+                break;
+            }
+        }*/
+
+        for (Location location:locations)
+        {
+            if (location.createCard().equals(name))
+            {
+                point = com.mapbox.geojson.Point.fromLngLat(location.getLongitude(), location.getLatitude());
                 break;
             }
         }

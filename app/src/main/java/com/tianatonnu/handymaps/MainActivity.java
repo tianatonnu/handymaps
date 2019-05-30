@@ -112,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements
     private Course[] courses;
     private Classroom[] classRooms;
     private Building[] buildings;
+    private ArrayList<Location> locations = new ArrayList<>();
+
+    DestinationPoint classLocation = null;
 
     // Arrays with all data strings
     private String[] courseStrings;
@@ -152,6 +155,10 @@ public class MainActivity extends AppCompatActivity implements
         courses = JSONParser.getCourses();
         buildings = JSONParser.getBuildings();
         classRooms = JSONParser.getClassrooms();
+        // Load location data into one arraylist
+        Collections.addAll(locations, courses);
+        Collections.addAll(locations, buildings);
+        Collections.addAll(locations, classRooms);
 
         // Turn the data into strings
         courseStrings = JSONParser.makeStrings(courses);
@@ -169,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements
         Collections.addAll(allData, courseStrings);
 
         list();
+
+        classLocation = (DestinationPoint)getIntent().getSerializableExtra("classLocation");
     }
 
     @Override
@@ -185,6 +194,40 @@ public class MainActivity extends AppCompatActivity implements
 
                         mapboxMap.addOnMapClickListener(MainActivity.this);
 
+                        // If looking for class from schedule, place marker at class location
+                        if (classLocation != null)
+                        {
+                            destinationPoint = Point.fromLngLat(classLocation.getLongitude(), classLocation.getLatitude());
+
+                            Layer layer = style.getLayer("destination-symbol-layer-id");
+                            if (layer != null) {
+                                layer.setProperties(visibility(VISIBLE));
+                            }
+
+                            /*originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                                    locationComponent.getLastKnownLocation().getLatitude());*/
+
+                            GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
+                            if (source != null) {
+                                source.setGeoJson(Feature.fromGeometry(destinationPoint));
+                            }
+                            mapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(destinationPoint.latitude(), destinationPoint.longitude()), 16));
+
+                            // Remove the current route
+                            if (navigationMapRoute != null)
+                                navigationMapRoute.removeRoute();
+                            // Enable the route and clear buttons
+                            routeBtn.setEnabled(true);
+                            routeBtn.setVisibility(View.VISIBLE);
+                            routeBtn.setBackgroundColor(getResources().getColor(R.color.mapboxBlue));
+                            routeBtn.setText(getResources().getString(R.string.find));
+                            route = 1;
+                            clearBtn.setEnabled(true);
+                            clearBtn.setVisibility(View.VISIBLE);
+                            clear = 1;
+                            centerBtn.setVisibility(View.VISIBLE);
+                        }
+
                         routeBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -192,6 +235,8 @@ public class MainActivity extends AppCompatActivity implements
                                 if (routeBtn.getText().equals(getResources().getString(R.string.find)))
                                 {
                                     // Find route
+                                    originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                                            locationComponent.getLastKnownLocation().getLatitude());
                                     getRoute(originPoint, destinationPoint);
                                     routeBtn.setText(getResources().getString(R.string.start));
                                     routeBtn.setBackgroundColor(getResources().getColor(R.color.startGreen));
@@ -510,7 +555,8 @@ public class MainActivity extends AppCompatActivity implements
                 String card = adapter.getItem(position);
                 Log.d("Search", card);
                 
-                destinationPoint = Search.findCoordinates(buildings, courses, classRooms, card);
+                //destinationPoint = Search.findCoordinates(buildings, courses, classRooms, card);
+                destinationPoint = Search.findCoordinates(locations, card);
 
                 Style style = mapboxMap.getStyle();
                 if (style != null)
@@ -520,8 +566,8 @@ public class MainActivity extends AppCompatActivity implements
                         layer.setProperties(visibility(VISIBLE));
                     }
 
-                    originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
-                            locationComponent.getLastKnownLocation().getLatitude());
+                    /*originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                            locationComponent.getLastKnownLocation().getLatitude());*/
 
                     GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
                     if (source != null) {

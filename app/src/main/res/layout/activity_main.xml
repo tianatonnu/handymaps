@@ -81,7 +81,7 @@
         android:id="@+id/ListView"
         style="@style/Widget.AppCompat.ListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="575dp"
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/mapboxWhite"
         android:divider="@color/cardview_dark_background"

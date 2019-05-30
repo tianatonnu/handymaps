@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.mapbox.geojson.Point;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class SchedulePage extends AppCompatActivity {
     private Course[] courses;
     private String[] courseStrings;
     private ArrayList<String> listViewData = new ArrayList<>();
+    private ArrayList<Location> locations = new ArrayList<>();
 
     // Used for displaying and holding the schedule
     private Schedule schedule;
@@ -80,6 +82,7 @@ public class SchedulePage extends AppCompatActivity {
         courseStrings = JSONParser.makeStrings(courses);
         Arrays.sort(courseStrings);
         Collections.addAll(listViewData, courseStrings);
+        Collections.addAll(locations, courses);
 
         // Load in the schedule
         scheduleListView = findViewById(R.id.course_lv);
@@ -195,6 +198,21 @@ public class SchedulePage extends AppCompatActivity {
                 // Update the schedule listview
                 setScheduleAdapter();
                 showSaveBtn();
+
+                prevCourseCard = -1;
+                prevCourseName = null;
+                prevView = null;
+            }
+        });
+
+        findBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SchedulePage.this, MainActivity.class);
+                Point point = Search.findCoordinates(locations, prevCourseName);
+                DestinationPoint destinationPoint = new DestinationPoint(point.latitude(), point.longitude());
+                intent.putExtra("classLocation", destinationPoint);
+                startActivity(intent);
             }
         });
 
@@ -272,8 +290,8 @@ public class SchedulePage extends AppCompatActivity {
     {
         deleteBtn.setEnabled(false);
         deleteBtn.setVisibility(View.INVISIBLE);
-        /*findBtn.setEnabled(false);
-        findBtn.setVisibility(View.INVISIBLE);*/
+        findBtn.setEnabled(false);
+        findBtn.setVisibility(View.INVISIBLE);
     }
 
     // Disable save button
@@ -296,8 +314,8 @@ public class SchedulePage extends AppCompatActivity {
     {
         deleteBtn.setEnabled(true);
         deleteBtn.setVisibility(View.VISIBLE);
-        /*findBtn.setEnabled(true);
-        findBtn.setVisibility(View.VISIBLE);*/
+        findBtn.setEnabled(true);
+        findBtn.setVisibility(View.VISIBLE);
         showBtns = true;
     }
 
