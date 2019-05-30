@@ -20,4 +20,5 @@
     <string name="my_courses">My Courses</string>
     <string name="find_class">Find Class</string>
     <string name="delete">Remove Course</string>
+    <string name="save">Save Changes</string>
 </resources>

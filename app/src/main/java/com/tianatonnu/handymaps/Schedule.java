@@ -49,6 +49,12 @@ public class Schedule
         }
     }
 
+    public void deleteSchedule()
+    {
+        courses.clear();
+        courseStrings.clear();
+    }
+
     public boolean contains(String courseName)
     {
         return courseStrings.contains(courseName);
