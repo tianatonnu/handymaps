@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/center_toggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|bottom"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_location_disabled_24dp"
-        tools:ignore="VectorDrawableCompat"
-        android:background="@color/colorPrimary"
-        mapbox:layout_constraintLeft_toLeftOf="parent"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         mapbox:layout_constraintTop_toTopOf="parent"/>
+
+    <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
@@ -28,6 +30,18 @@
         mapbox:mapbox_cameraZoom="16"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/center_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_location_disabled_24dp"
+        tools:ignore="VectorDrawableCompat"
+        android:background="@color/colorPrimary"
+        mapbox:layout_constraintLeft_toLeftOf="parent"
+        mapbox:layout_constraintTop_toBottomOf="@id/my_toolbar"/>
 
     <Button
         android:id="@+id/routeButton"
@@ -67,7 +81,8 @@
         android:id="@+id/ListView"
         style="@style/Widget.AppCompat.ListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="575dp"
+        android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/mapboxWhite"
         android:divider="@color/cardview_dark_background"
         android:dividerHeight="5dp"

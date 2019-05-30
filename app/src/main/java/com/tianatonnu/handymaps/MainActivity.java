@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.mapbox.android.core.permissions.PermissionsListener;
@@ -111,6 +112,9 @@ public class MainActivity extends AppCompatActivity implements
     private Course[] courses;
     private Classroom[] classRooms;
     private Building[] buildings;
+    private ArrayList<Location> locations = new ArrayList<>();
+
+    DestinationPoint classLocation = null;
 
     // Arrays with all data strings
     private String[] courseStrings;
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements
     private TextView tv;
     private SearchView searchView;
     private ListView listView;
-    private int clear = 0, start = 0, find = 0, route = 0;
+    private int clear = 0, route = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +139,9 @@ public class MainActivity extends AppCompatActivity implements
 
         // This contains the MapView in XML and needs to be called after the access token is configured.
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
@@ -148,6 +155,10 @@ public class MainActivity extends AppCompatActivity implements
         courses = JSONParser.getCourses();
         buildings = JSONParser.getBuildings();
         classRooms = JSONParser.getClassrooms();
+        // Load location data into one arraylist
+        Collections.addAll(locations, courses);
+        Collections.addAll(locations, buildings);
+        Collections.addAll(locations, classRooms);
 
         // Turn the data into strings
         courseStrings = JSONParser.makeStrings(courses);
@@ -165,6 +176,8 @@ public class MainActivity extends AppCompatActivity implements
         Collections.addAll(allData, courseStrings);
 
         list();
+
+        classLocation = (DestinationPoint)getIntent().getSerializableExtra("classLocation");
     }
 
     @Override
@@ -181,6 +194,40 @@ public class MainActivity extends AppCompatActivity implements
 
                         mapboxMap.addOnMapClickListener(MainActivity.this);
 
+                        // If looking for class from schedule, place marker at class location
+                        if (classLocation != null)
+                        {
+                            destinationPoint = Point.fromLngLat(classLocation.getLongitude(), classLocation.getLatitude());
+
+                            Layer layer = style.getLayer("destination-symbol-layer-id");
+                            if (layer != null) {
+                                layer.setProperties(visibility(VISIBLE));
+                            }
+
+                            /*originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                                    locationComponent.getLastKnownLocation().getLatitude());*/
+
+                            GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
+                            if (source != null) {
+                                source.setGeoJson(Feature.fromGeometry(destinationPoint));
+                            }
+                            mapboxMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(destinationPoint.latitude(), destinationPoint.longitude()), 16));
+
+                            // Remove the current route
+                            if (navigationMapRoute != null)
+                                navigationMapRoute.removeRoute();
+                            // Enable the route and clear buttons
+                            routeBtn.setEnabled(true);
+                            routeBtn.setVisibility(View.VISIBLE);
+                            routeBtn.setBackgroundColor(getResources().getColor(R.color.mapboxBlue));
+                            routeBtn.setText(getResources().getString(R.string.find));
+                            route = 1;
+                            clearBtn.setEnabled(true);
+                            clearBtn.setVisibility(View.VISIBLE);
+                            clear = 1;
+                            centerBtn.setVisibility(View.VISIBLE);
+                        }
+
                         routeBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -188,6 +235,8 @@ public class MainActivity extends AppCompatActivity implements
                                 if (routeBtn.getText().equals(getResources().getString(R.string.find)))
                                 {
                                     // Find route
+                                    originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                                            locationComponent.getLastKnownLocation().getLatitude());
                                     getRoute(originPoint, destinationPoint);
                                     routeBtn.setText(getResources().getString(R.string.start));
                                     routeBtn.setBackgroundColor(getResources().getColor(R.color.startGreen));
@@ -301,6 +350,11 @@ public class MainActivity extends AppCompatActivity implements
         clearBtn.setEnabled(true);
         clearBtn.setVisibility(View.VISIBLE);
         clear = 1;
+
+        // Clear search bar if it is up
+        searchView.clearFocus();
+        findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
+
         return true;
     }
 
@@ -418,7 +472,7 @@ public class MainActivity extends AppCompatActivity implements
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         MenuItem item = menu.findItem(R.id.search);
-        /*SearchView*/ searchView = (SearchView) MenuItemCompat.getActionView(item); //item.getActionView();
+        searchView = (SearchView) MenuItemCompat.getActionView(item);
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setQueryHint(getResources().getString(R.string.hint));
@@ -438,7 +492,7 @@ public class MainActivity extends AppCompatActivity implements
                 }
                 if (route == 1)
                 {
-                    routeBtn.setEnabled(false);
+                    routeBtn.setEnabled(true);
                     routeBtn.setVisibility(View.VISIBLE);
                 }
                 return false;
@@ -466,30 +520,9 @@ public class MainActivity extends AppCompatActivity implements
                 //adapter.getFilter().filter(newText);
                 if (newText != null && !newText.isEmpty())
                 {
-                    // Filter options
-                    // Make this more robust
-                    ArrayList<String> lstFound = new ArrayList<>();
-
-                    // Split search into separate words (key words)
-                    String[] keyWords = newText.split(" ");
-                    for (String item:allData)
-                    {
-                        int valid = 1;
-                        for (String word:keyWords)
-                        {
-                            // item does not contain the key word
-                            if (!item.toLowerCase().contains(word.toLowerCase()))
-                            {
-                                valid = 0;
-                                break;
-                            }
-                        }
-                        // Item contains all key words
-                        if (valid == 1)
-                        {
-                            lstFound.add(item);
-                        }
-                    }
+                    // Filter search
+                    ArrayList<String> lstFound = Search.filter(newText, allData);
+                    
                     // Return the filtered results
                     adapter = new ArrayAdapter<>(
                             MainActivity.this,
@@ -521,54 +554,9 @@ public class MainActivity extends AppCompatActivity implements
                 findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
                 String card = adapter.getItem(position);
                 Log.d("Search", card);
-                int found = 0;
-
-                // Search buildings
-                for (Building building:buildings)
-                {
-                    if (building.createCard().equals(card))
-                    {
-                        destinationPoint = Point.fromLngLat(building.getBuildingLong(), building.getBuildingLat());
-                        found = 1;
-                        //Log.d("Search", building.createCard());
-                        Log.d("Search", "/n" + building.createCard() + " Longitude: " + destinationPoint.longitude() + " Latitude: " + destinationPoint.latitude());
-                        break;
-                    }
-                }
-
-                // Search courses
-                for (Course course:courses)
-                {
-                    // No need to search the courses
-                    if (found == 1)
-                        break;
-                    // Need to search the courses
-                    if (course.createCard().equals(card))
-                    {
-                        destinationPoint = Point.fromLngLat(course.getCourseLong(), course.getCourseLat());
-                        found = 1;
-                        //Log.d("Search", course.createCard());
-                        Log.d("Search", "/n" + course.createCard() + " Longitude: " + destinationPoint.longitude() + " Latitude: " + destinationPoint.latitude());
-                        break;
-                    }
-                }
-
-                // Search classRooms
-                for (Classroom classroom:classRooms)
-                {
-                    // No need to search the classRooms
-                    if (found == 1)
-                        break;
-                    // Need to search the classRooms
-                    if (classroom.createCard().equals(card))
-                    {
-                        destinationPoint = Point.fromLngLat(classroom.getClassLong(), classroom.getClassLat());
-                        found = 1;
-                        //Log.d("Search", classroom.createCard());
-                        Log.d("Search", "/n" + classroom.createCard() + " Longitude: " + destinationPoint.longitude() + " Latitude: " + destinationPoint.latitude());
-                        break;
-                    }
-                }
+                
+                //destinationPoint = Search.findCoordinates(buildings, courses, classRooms, card);
+                destinationPoint = Search.findCoordinates(locations, card);
 
                 Style style = mapboxMap.getStyle();
                 if (style != null)
@@ -578,8 +566,8 @@ public class MainActivity extends AppCompatActivity implements
                         layer.setProperties(visibility(VISIBLE));
                     }
 
-                    originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
-                            locationComponent.getLastKnownLocation().getLatitude());
+                    /*originPoint = Point.fromLngLat(locationComponent.getLastKnownLocation().getLongitude(),
+                            locationComponent.getLastKnownLocation().getLatitude());*/
 
                     GeoJsonSource source = mapboxMap.getStyle().getSourceAs("destination-source-id");
                     if (source != null) {
@@ -607,6 +595,18 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.ListView).setVisibility(View.INVISIBLE);
         return true;
     }
+
+    /* Added by Tatjana 05/15. */
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.schedule:
+                    startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }
 
 
     @Override

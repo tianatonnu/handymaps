@@ -4,6 +4,145 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SchedulePage">
+    android:background="@color/activityBackground"
+    tools:context=".ScheduleActivity">
+
+    <Button
+        android:id="@+id/schedule_route_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/mapboxBlue"
+        android:text="@string/find_class"
+        android:visibility="invisible"
+        android:enabled="false"
+        android:textColor="@color/mapboxWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/schedule_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/removeRed"
+        android:enabled="false"
+        android:visibility="invisible"
+        android:text="@string/delete"
+        android:textColor="@color/mapboxWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <Button
+        android:id="@+id/schedule_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/startGreen"
+        android:enabled="false"
+        android:visibility="invisible"
+        android:text="@string/save"
+        android:textColor="@color/mapboxWhite"
+        app:layout_constraintStart_toEndOf="@id/schedule_delete_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/schedule_route_button"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/schedule_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/scheduleName"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/schedule_toolbar"
+            app:layout_constraintEnd_toEndOf="@+id/schedule_toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/schedule_toolbar" />
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/my_courses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/my_courses"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_search" />
+
+    <ListView
+        android:id="@+id/course_lv"
+        style="@style/Widget.AppCompat.ListView"
+        android:layout_width="348dp"
+        android:layout_height="375dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/activityBackground"
+        android:divider="@color/cardview_dark_background"
+        android:dividerHeight="5dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_courses"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="201dp"
+        tools:layout_height="wrap_content" />
+
+
+    <SearchView
+        android:id="@+id/schedule_search"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="@string/schedule_hint"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schedule_toolbar"
+        app:queryHint="@string/schedule_hint"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ListView
+        android:id="@+id/schedule_search_lv"
+        style="@style/Widget.AppCompat.ListView"
+        android:layout_width="348dp"
+        android:layout_height="500dp"
+        android:background="@color/mapboxWhite"
+        android:divider="@color/cardview_dark_background"
+        android:dividerHeight="5dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/schedule_search" />
 
 </android.support.constraint.ConstraintLayout>
