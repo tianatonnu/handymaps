@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Classroom /*implements Comparable<Classroom>*/ {
+public class Classroom implements Location/*implements Comparable<Classroom>*/ {
     private String classRoomBldgName;
     private String classRoomBldgNumber;
     private String roomNumber;
@@ -26,17 +26,17 @@ public class Classroom /*implements Comparable<Classroom>*/ {
         return roomNumber;
     }
 
-    public double getClassLat(){
+    public double getLatitude(){
         return location[1];
     }
 
-    public double getClassLong(){
+    public double getLongitude(){
         return location[0];
     }
 
     public String createCard(){
         String card = classRoomBldgNumber + "-" + roomNumber + "\n";
-        card += "Buidling: " + classRoomBldgName + "\n";
+        card += "Building: " + classRoomBldgName + "\n";
         card += "Room: " + roomNumber;
         return card;
     }
