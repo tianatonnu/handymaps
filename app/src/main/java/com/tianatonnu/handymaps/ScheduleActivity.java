@@ -290,7 +290,7 @@ public class ScheduleActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.delete:
-                // Delete entire schedule
+                // Delete entire schedule dialog
                 confirmDeleteDialog();
                 /*schedule.deleteSchedule();
                 setScheduleAdapter();
