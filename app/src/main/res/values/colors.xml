@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#64A073</color>
+    <color name="colorPrimaryDark">#6175BD7F</color>
+    <color name="colorAccent">#D71F4622</color>
 
     <color name="mapboxWhite">#ffffff</color>
-    <color name="mapboxBlue">#4264fb</color>
+    <color name="mapboxBlue">#D71F4622</color>
     <color name="mapboxGrayLight">#c6d2e1</color>
     <color name="mapboxPink">#ee4e8b</color>
     <color name="mapboxYellow">#d9d838</color>
     <color name="mapboxRed">#b43b71</color>
 
-    <color name="startGreen">#00CC1F</color>
-    <color name="removeRed">#E20000</color>
+    <color name="startGreen">#64A073</color>
+    <color name="removeRed">#643030</color>
 
     <color name="activityBackground">#EEEEEE</color>
 </resources>
