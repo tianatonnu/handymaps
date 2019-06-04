@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class BuildingUnitTest {
 
 
     private Building testBuilding = new Building(new double[]{-120.653077, 35.297469},"Yosemite Hall Tower 8","114J");
