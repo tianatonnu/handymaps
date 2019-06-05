@@ -135,4 +135,33 @@ public class ClassroomUnitTest {
         assertEquals(0,testClassroom01.compareTo(testClassroom02));
     }
 
+    @Test
+    public void classroomComparatorTest10(){
+        Classroom testClassroom01 = new Classroom("Math & Science","100","0204",new double[]{-120.66199690103531, 35.30118890411341});
+
+        Classroom testClassroom02 = new Classroom("Math & Science","11","0204",new double[]{-120.66199690103531, 35.30118890411341});
+
+        assertEquals(1,testClassroom01.compareTo(testClassroom02));
+
+    }
+
+    @Test
+    public void classroomComparatorTest11(){
+        Classroom testClassroom01 = new Classroom("Math & Science","186","B103",new double[]{-120.66199690103531, 35.30118890411341});
+
+        Classroom testClassroom02 = new Classroom("Math & Science","186","C301",new double[]{-120.66199690103531, 35.30118890411341});
+
+        assertEquals(-1,testClassroom01.compareTo(testClassroom02));
+
+    }
+
+    @Test
+    public void classroomComparatorTest12(){
+        Classroom testClassroom01 = new Classroom("Math & Science","100","0115",new double[]{-120.66199690103531, 35.30118890411341});
+
+        Classroom testClassroom02 = new Classroom("Math & Science","26M","0204",new double[]{-120.66199690103531, 35.30118890411341});
+
+        assertEquals(1,testClassroom01.compareTo(testClassroom02));
+
+    }
 }
