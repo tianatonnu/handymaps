@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Classroom implements Location/*implements Comparable<Classroom>*/ {
+public class Classroom implements Location, Comparable<Classroom>{
     private String classRoomBldgName;
     private String classRoomBldgNumber;
     private String roomNumber;
@@ -41,8 +41,27 @@ public class Classroom implements Location/*implements Comparable<Classroom>*/ {
         return card;
     }
 
-    /*public int compareTo(Classroom other)
-    {
-        return 0;
-    }*/
+    @Override
+    public int compareTo(Classroom other) {
+        // The String compare method works even when building numbers or room numbers contain a Letter
+        int compVar = this.classRoomBldgNumber.compareTo(other.getBlgNumber());
+
+        if(compVar < 0){
+            return -1;
+        }
+        else if (compVar > 0){
+            return 1;
+        }
+        // If it is the same building, then compare room numbers
+        else {
+            compVar = this.roomNumber.compareTo(other.getRoomNumber());
+            if(compVar < 0){
+                return -1;
+            }
+            else if(compVar > 0){
+                return 1;
+            }
+            return 0;
+        }
+    }
 }
