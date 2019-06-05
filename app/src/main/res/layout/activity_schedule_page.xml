@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/schedule_route_button"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/schedule_delete_button"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -42,7 +42,7 @@
 
     <Button
         android:id="@+id/schedule_save_button"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"

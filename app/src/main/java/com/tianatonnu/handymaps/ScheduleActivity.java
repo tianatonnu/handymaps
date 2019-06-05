@@ -29,6 +29,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.widget.EditText;
+import android.view.LayoutInflater;
+
 public class ScheduleActivity extends AppCompatActivity {
 
     // For displaying the search bar and serach results
@@ -259,6 +264,9 @@ public class ScheduleActivity extends AppCompatActivity {
                 showSave = false;
                 hideSave();
                 saveSchedule();
+                // Quick pop-up message on the bottom of the screen to indicate changes were saved
+                Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule Saved", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
     }
@@ -282,20 +290,49 @@ public class ScheduleActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.delete:
-                // Delete entire schedule
-                schedule.deleteSchedule();
+                // Delete entire schedule dialog
+                confirmDeleteDialog();
+                /*schedule.deleteSchedule();
                 setScheduleAdapter();
                 hideButtons();
                 showBtns = false;
                 showSaveBtn();
 
                 Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule deleted", Toast.LENGTH_SHORT);
-                toast.show();
+                toast.show();*/
 
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void confirmDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirm Delete Schedule");
+        builder.setMessage("You are about to delete all classes from your schedule. Do you wish to proceed?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                schedule.deleteSchedule();
+                setScheduleAdapter();
+                hideButtons();
+                showBtns = false;
+                saveSchedule();
+                Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule deleted", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Schedule not deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.show();
     }
 
     @Override
@@ -376,8 +413,8 @@ public class ScheduleActivity extends AppCompatActivity {
         editor.commit();
 
         // Quick pop-up message on the bottom of the screen to indicate changes were saved
-        Toast toast = Toast.makeText(this, "Schedule Saved", Toast.LENGTH_SHORT);
-        toast.show();
+        /*Toast toast = Toast.makeText(this, "Schedule Saved", Toast.LENGTH_SHORT);
+        toast.show();*/
     }
 
     // Load a previously saved schdeule, or make a new one if there is no saved schedule
