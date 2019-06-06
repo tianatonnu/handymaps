@@ -14,8 +14,4 @@ public class BuildingUnitTest {
         assertEquals("Yosemite Hall Tower 8",testBuilding.getBuildingName());
         assertEquals("114J",testBuilding.getBuildingNumber());
     }
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
 }
