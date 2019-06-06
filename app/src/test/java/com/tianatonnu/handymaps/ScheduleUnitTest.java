@@ -4,11 +4,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ScheduleUnitTest {
-    // Test addCourse()
 
-    // Test removeCourse()
+    private Schedule schedule = new Schedule();
 
-    // Test deleteSchedule()
+    // addCourse() tests
 
-    // Test contains()
+    // removeCourse() tests
+
+    // deleteSchedule() tests
+
+    // contains() tests
+
+    // Comparator tests
+
 }

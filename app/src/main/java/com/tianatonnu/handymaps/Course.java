@@ -66,8 +66,8 @@ public class Course implements Location/*implements Comparable<Course>*/ {
         return card;
     }
 
-    /*public int compareTo(Course other)
+    public int compareTo(Course other)
     {
-        return 0;
-    }*/
+        return (this.createCard().compareTo(other.createCard()));
+    }
 }

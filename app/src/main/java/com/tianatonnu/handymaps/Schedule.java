@@ -1,8 +1,5 @@
 package com.tianatonnu.handymaps;
 
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Schedule
@@ -37,12 +34,15 @@ public class Schedule
     public boolean addCourse(Course[] classes, String courseName)
     {
         Course course;
+
         // Only want to add the course if it is already not in the schedule
         if (!courseStrings.contains(courseName))
         {
             course = Search.findCourse(classes, courseName);
             courses.add(course);
+            courses.sort(new ScheduleCourseComparator()); // This still works, ignore warning.
             courseStrings.add(course.createCard());
+            courseStrings.sort(new ScheduleStringComparator());
 
             return true;
         }
