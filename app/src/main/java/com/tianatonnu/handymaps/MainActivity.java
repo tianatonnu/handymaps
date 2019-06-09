@@ -152,9 +152,9 @@ public class MainActivity extends AppCompatActivity implements
         clearBtn = findViewById(R.id.clearButton);
 
         // Get the data
-        courses = JSONParser.getCourses();
-        buildings = JSONParser.getBuildings();
-        classRooms = JSONParser.getClassrooms();
+        courses = JSONParser.getCourses("sections.json");
+        buildings = JSONParser.getBuildings("buildings.json");
+        classRooms = JSONParser.getClassrooms("classrooms.json");
         // Load location data into one arraylist
         Collections.addAll(locations, courses);
         Collections.addAll(locations, buildings);

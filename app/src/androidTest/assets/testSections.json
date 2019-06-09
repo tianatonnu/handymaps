@@ -1,0 +1,51 @@
+{
+  "type": "TestCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.00,
+          1.00
+        ]
+      },
+      "properties": {
+        "roomId": 1,
+        "classNumber": "0001",
+        "department": "TestDept",
+        "courseNumber": " 001",
+        "courseName": "Intro to Java Unit Testing",
+        "bldgName": "Testing Center - 51",
+        "room": "0001",
+        "time": "12:00 AM to 12:00 PM on MTWTHF",
+        "sectionNumber": "51",
+        "_id": "testID",
+        "type": "testSections"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.00,
+          1.00
+        ]
+      },
+      "properties": {
+        "roomId": 2,
+        "classNumber": "0002",
+        "department": "TestDept",
+        "courseNumber": " 002",
+        "courseName": "Intro to Java Unit Testing",
+        "bldgName": "Testing Center - 51",
+        "room": "0002",
+        "time": "12:00 AM to 12:00 PM on MTWTHF",
+        "sectionNumber": "51",
+        "_id": "testID",
+        "type": "testSections"
+      }
+    }
+  ]
+}

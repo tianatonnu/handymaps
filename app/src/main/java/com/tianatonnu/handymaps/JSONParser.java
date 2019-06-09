@@ -1,6 +1,7 @@
 package com.tianatonnu.handymaps;
 
 import android.app.Application;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.util.Log;
 
@@ -28,7 +29,7 @@ public class JSONParser extends Application {
         return JSONParser.context;
     }
 
-    public static Course[] getCourses() {
+    public static Course[] getCourses(String sectionsJSONFile) {
         Course[] cpCourses = null;
         //String[] cpCourses_arr = null;
 
@@ -59,7 +60,7 @@ public class JSONParser extends Application {
         numberOfSections = 0;
 
         try {
-            sections = new JSONObject(loadJSONFromAsset("sections.json"));
+            sections = new JSONObject(loadJSONFromAsset(sectionsJSONFile));
             courses = sections.getJSONArray("features");
 
             // Get the number of courses
@@ -98,10 +99,11 @@ public class JSONParser extends Application {
                 Log.v("Course: ",c.createCard());
             }*/
 
-            Log.v("Size Of Course Array", String.valueOf(cpCourses.length));
+            //Log.v("Size Of Course Array", String.valueOf(cpCourses.length));
 
         } catch (JSONException e) {
-            Log.v("Error: ", "Unable to load information");
+            e.printStackTrace();
+            //Log.v("Error: ", "Unable to load information");
         }
 
         return cpCourses;
@@ -120,7 +122,7 @@ public class JSONParser extends Application {
         return cpCourses_arr;
     }
 
-    public static Building[] getBuildings() {
+    public static Building[] getBuildings(String buildingsJSONFile) {
         Building[] cpBuildings = null;
         //String[] cpBuildings_arr = null;
 
@@ -144,7 +146,7 @@ public class JSONParser extends Application {
         numberOfBuildings = 0;
 
         try {
-            buildingsJSON = new JSONObject(loadJSONFromAsset("buildings.json"));
+            buildingsJSON = new JSONObject(loadJSONFromAsset(buildingsJSONFile));
             buildings = buildingsJSON.getJSONArray("features");
 
             //Get the number of buildings
@@ -172,9 +174,9 @@ public class JSONParser extends Application {
             }
 
             //Printing out each building card
-            for (Building b : cpBuildings) {
+          /*  for (Building b : cpBuildings) {
                 Log.v("Building: ", b.createCard());
-            }
+            }*/
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -196,7 +198,7 @@ public class JSONParser extends Application {
         return cpBuildings_arr;
     }
 
-    public static Classroom[] getClassrooms() {
+    public static Classroom[] getClassrooms(String classroomJSONFile) {
         Classroom[] cpClassrooms = null;
         //String[] cpClassrooms_arr = null;
 
@@ -222,14 +224,14 @@ public class JSONParser extends Application {
 
         try {
 
-            classroomsJSON = new JSONObject(loadJSONFromAsset("classrooms.json"));
+            classroomsJSON = new JSONObject(loadJSONFromAsset(classroomJSONFile));
             classrooms = classroomsJSON.getJSONArray("features");
 
             //Get the number of classrooms
             cpClassrooms = new Classroom[classrooms.length()];
             numberOfClassrooms = classrooms.length();
 
-            Log.d("Number of classrooms is: ", String.valueOf(numberOfClassrooms));
+            //Log.d("Number of classrooms is: ", String.valueOf(numberOfClassrooms));
 
             for (int i = 0; i < numberOfClassrooms; i++) {
                 classroom = classrooms.getJSONObject(i);
@@ -253,9 +255,9 @@ public class JSONParser extends Application {
             }
 
             //Printing out each building card
-            for (Classroom c : cpClassrooms) {
+         /*   for (Classroom c : cpClassrooms) {
                 Log.v("Classroom: ", c.createCard());
-            }
+            }*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -282,9 +284,9 @@ public class JSONParser extends Application {
 
         // Always use try and catch for parsing
         try{
-            Log.d("Phase", "Pre InputStream");
+            //Log.d("Phase", "Pre InputStream");
             InputStream is = JSONParser.getAppContext().getAssets().open(asset);
-            Log.d("Phase", "Post InputStream");
+            //Log.d("Phase", "Post InputStream");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -295,7 +297,7 @@ public class JSONParser extends Application {
             e.printStackTrace();
             return null;
         }
-        Log.d("Phase", "Pre JSON");
+        //Log.d("Phase", "Pre JSON");
         return json;
     }
 }
