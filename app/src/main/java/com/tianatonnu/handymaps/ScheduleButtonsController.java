@@ -64,7 +64,7 @@ public class ScheduleButtonsController {
         });
     }
 
-    private void setFindBtnListener(ArrayList<Location> locations/*, String prevCourseName*/)
+    private void setFindBtnListener(ArrayList<Location> locations)
     {
         findBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +88,6 @@ public class ScheduleButtonsController {
                 disableSaveButton();
 
                 scheduleActivity.saveSchedule();
-                // Quick pop-up message on the bottom of the screen to indicate changes were saved
-                Toast toast = Toast.makeText(scheduleActivity, "Schedule Saved", Toast.LENGTH_SHORT);
-                toast.show();
             }
         });
     }
@@ -108,8 +105,6 @@ public class ScheduleButtonsController {
                 disableCourseButtons();
 
                 scheduleActivity.saveSchedule();
-                Toast toast = Toast.makeText(scheduleActivity, "Schedule deleted", Toast.LENGTH_SHORT);
-                toast.show();
             }
         });
 

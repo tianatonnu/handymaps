@@ -99,7 +99,6 @@ public class MapController {
 
     public void findLocation(MapButtonsController buttonsController, Point destinationPoint)
     {
-        //destinationPoint = Point.fromLngLat(classLocation.getLongitude(), classLocation.getLatitude());
         this.destinationPoint = destinationPoint;
 
         Layer layer = mapboxMap.getStyle().getLayer("destination-symbol-layer-id");
