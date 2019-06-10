@@ -83,7 +83,7 @@ public class ScheduleActivity extends AppCompatActivity {
         saveBtn = findViewById(R.id.schedule_save_button);
 
         // Parse courses from JSON data
-        courses = JSONParser.getCourses();
+        courses = JSONParser.getCourses("sections.json");
         courseStrings = JSONParser.makeStrings(courses);
         Arrays.sort(courseStrings);
         Collections.addAll(listViewData, courseStrings);
