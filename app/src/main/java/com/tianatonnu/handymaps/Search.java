@@ -36,7 +36,6 @@ public class Search {
         return lstFound;
     }
 
-    //public static Point findCoordinates(Building[] buildings, Course[] courses, Classroom[] classRooms, String card)
     public static Point findCoordinates(ArrayList<Location> locations, String name)
     {
         Point point = null;

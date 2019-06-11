@@ -17,9 +17,6 @@
         mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         mapbox:layout_constraintTop_toTopOf="parent"/>
 
-    <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-    mapbox:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
-
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"

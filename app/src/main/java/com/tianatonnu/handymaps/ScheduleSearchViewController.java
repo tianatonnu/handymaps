@@ -59,7 +59,6 @@ public class ScheduleSearchViewController {
             public boolean onClose() {
                 closeSearchBar();
                 isFocused = false;
-                //buttonsController.enableButtonsConditionally();
                 return true;
             }
         });
@@ -73,7 +72,6 @@ public class ScheduleSearchViewController {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus)
                 {
-                    //buttonsController.hideCourseButtons();
                     buttonsController.disableCourseButtons();
                     buttonsController.hideSaveButton();
                     if (scheduleActivity.getPrevView() != null) {
@@ -82,11 +80,6 @@ public class ScheduleSearchViewController {
                     }
                     isFocused = true;
                 }
-                /*else
-                {
-                    buttonsController.enableButtonsConditionally();
-                    isFocused = false;
-                }*/
             }
         });
     }

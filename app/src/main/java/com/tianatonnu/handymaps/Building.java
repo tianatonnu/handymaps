@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Building implements Location, Comparable<Building>/*implements Comparable<Building>*/{
+public class Building implements Location, Comparable<Building>{
     private double[] location = new double[2];
     private String bldgName;
     private String bldgNumber;
