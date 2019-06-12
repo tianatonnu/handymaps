@@ -1,6 +1,5 @@
 language: android
 jdk: oraclejdk8
-dist: trusty
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -15,11 +14,9 @@ cache:
 env:
   global:
     - ANDROID_API=28
-    #- EMULATOR_API=28
+    - EMULATOR_API=28
     - ANDROID_BUILD_TOOLS=28.0.2
     - ADB_INSTALL_TIMEOUT=5
-  - TEST_SUITE=units
-  - TEST_SUITE=integration
 
 android:
   components:
