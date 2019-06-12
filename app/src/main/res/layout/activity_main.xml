@@ -82,7 +82,7 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@color/mapboxWhite"
         android:divider="@color/cardview_dark_background"
-        android:dividerHeight="5dp"
+        android:dividerHeight="2dp"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
         android:visibility="invisible"
