@@ -1,6 +1,12 @@
 package com.tianatonnu.handymaps;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
 import static org.junit.Assert.*;
 
 public class ScheduleIntegrationTest {
@@ -18,10 +24,23 @@ public class ScheduleIntegrationTest {
             "0306", new double[]{-120.662697, 35.299838}, "6:10 PM to 9:00 PM on MW");
 
     private Course[] classes = {c1, c2, c3, c4, c5};
+
+
     // - - - - - - - - - - - - - - - - - - - -
     //         - addCourse() tests -
     // - - - - - - - - - - - - - - - - - - - -
-    // 1. Adds classes correctly
+    // 1 Adds classes correctly
+    @Test
+    public void scheduleCreationTest(){
+        Course[] classes = getCourses();
+        Schedule tempSchedule = new Schedule();
+        String cStr1 = "CPE 101-01: Fundamentals of Computer Science\nBuilding: Const " +
+                "Innovations Center - 186\nRoom: C102\nTime: 8:10 AM to 9:00 AM on MWF";
+
+        tempSchedule.addCourse(classes, cStr1);
+        assertTrue(tempSchedule.contains(cStr1));
+    }
+
     @Test
     public void addOneNewCourseShouldAdd(){
         Schedule testSched = new Schedule();
@@ -288,4 +307,110 @@ public class ScheduleIntegrationTest {
     // - - - - - - - - - - - - - - - - - - - -
 
 
+
+    // - - - - - - - - - - - - - - - - - - - -
+    //         - JSONParser tests -
+    // - - - - - - - - - - - - - - - - - - - -
+
+    public Course[] getCourses() {
+        Course[] cpCourses = null;
+
+        // Main JSON Object for sections.json
+        JSONObject sections = null;
+
+        //JSON Array containing multiple courses
+        JSONArray courses = null;
+        JSONObject course = null;
+
+        // Objects for Location Parsing
+        JSONObject courseLocationJSON = null;
+        JSONArray courseLocationCoordinates = null;
+        // lat & long
+        double[] courseLocation = new double[2];
+
+        // Objects for a Course's information
+        JSONObject courseInfo = null;
+        // Individual information objects
+        String courseDept = null;
+        String courseNumber = null;
+        String courseName = null;
+        String courseBldg = null;
+        String courseRoom = null;
+        String rawCourseTime = null;
+        String courseSectionNumber = null;
+
+        int numberOfSections = 0;
+
+        try {
+            sections = new JSONObject(loadJSONFromAsset());
+            courses = sections.getJSONArray("features");
+
+            // Get the number of courses
+            cpCourses = new Course[courses.length()];
+            numberOfSections = courses.length();
+
+
+            // Loop through the JSON Array to get each Course Info
+            for (int i = 0; i < numberOfSections; i++) {
+                course = courses.getJSONObject(i);
+
+                //Parsing for Location
+                courseLocationJSON = course.getJSONObject("geometry");
+                courseLocationCoordinates = courseLocationJSON.getJSONArray("coordinates");
+                // Get Longitude
+                courseLocation[0] = courseLocationCoordinates.getDouble(0);
+                //Get Latitude
+                courseLocation[1] = courseLocationCoordinates.getDouble(1);
+
+                //Parsing for Course Information
+                courseInfo = course.getJSONObject("properties");
+                courseDept = courseInfo.getString("department");
+                courseNumber = courseInfo.getString("courseNumber");
+                courseName = courseInfo.getString("courseName");
+                courseBldg = courseInfo.getString("bldgName");
+                courseRoom = courseInfo.getString("room");
+                rawCourseTime = courseInfo.getString("time");
+                courseSectionNumber = courseInfo.getString("sectionNumber");
+
+                //Initialize Classroom Object with Information
+                cpCourses[i] = new Course(courseDept, courseNumber, courseSectionNumber, courseName, courseBldg, courseRoom, courseLocation, rawCourseTime);
+            }
+
+            //Printing out each course Card
+            /*  for(Course c: cpCourses){
+                Log.v("Course: ",c.createCard());
+            }*/
+
+            //Log.v("Size Of Course Array", String.valueOf(cpCourses.length));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            //Log.v("Error: ", "Unable to load information");
+        }
+
+        return cpCourses;
+    }
+
+    private String loadJSONFromAsset(){
+        String json = null;
+
+        // Always use try and catch for parsing
+        try{
+            //Log.d("Phase", "Pre InputStream");
+            InputStream is = this.getClass().getClassLoader().getResourceAsStream("sections.json");
+            //Log.d("Phase", "Post InputStream");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        //Log.d("Phase", "Pre JSON");
+        return json;
+    }
 }
+

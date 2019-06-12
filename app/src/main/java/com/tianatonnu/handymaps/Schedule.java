@@ -1,5 +1,7 @@
 package com.tianatonnu.handymaps;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Schedule
@@ -40,7 +42,7 @@ public class Schedule
         {
             course = Search.findCourse(classes, courseName);
             courses.add(course);
-            courses.sort(new ScheduleCourseComparator()); // This still works, ignore warning.
+            courses.sort(new ScheduleCourseComparator());
             courseStrings.add(course.createCard());
             courseStrings.sort(new ScheduleStringComparator());
 

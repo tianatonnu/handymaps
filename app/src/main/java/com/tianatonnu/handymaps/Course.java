@@ -1,6 +1,6 @@
 package com.tianatonnu.handymaps;
 
-public class Course implements Location/*implements Comparable<Course>*/ {
+public class Course implements Location, Comparable<Course> {
     private String dept;
     private String courseNumber;
     private String sectionNumber;

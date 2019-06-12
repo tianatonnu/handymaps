@@ -1,9 +1,7 @@
 package com.tianatonnu.handymaps;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,26 +11,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.mapbox.geojson.Point;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.widget.EditText;
-import android.view.LayoutInflater;
+import android.widget.Toast;
 
 public class ScheduleActivity extends AppCompatActivity {
 
@@ -53,16 +41,12 @@ public class ScheduleActivity extends AppCompatActivity {
 
     // Used for displaying and holding the schedule
     private Schedule schedule;
-    private int prevCourseCard = -1;
     private View prevView = null;
     private String prevCourseName = null;
 
-    // The various buttons for the schedule page
-    private Button deleteBtn;
-    private Button findBtn;
-    private Button saveBtn;
-    private boolean showSave = false;
-    private boolean showBtns = false;
+    private ScheduleButtonsController buttonsController;
+    private ScheduleSearchViewController searchViewController;
+    private ScheduleListViewController listViewController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +54,13 @@ public class ScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule_page);
 
         // Set up tool bar as the action bar menu
-        Toolbar toolBar = (Toolbar) findViewById(R.id.schedule_toolbar);
+        Toolbar toolBar = findViewById(R.id.schedule_toolbar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // Adds back button to get back to map
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        deleteBtn = findViewById(R.id.schedule_delete_button);
-        findBtn = findViewById(R.id.schedule_route_button);
-        saveBtn = findViewById(R.id.schedule_save_button);
 
         // Parse courses from JSON data
         courses = JSONParser.getCourses("sections.json");
@@ -103,172 +83,22 @@ public class ScheduleActivity extends AppCompatActivity {
         exitSearchBar();
         searchListView = findViewById(R.id.schedule_search_lv);
 
-        // Set close listener for search bar
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                closeSearchBar();
-                return true;
-            }
-        });
+        buttonsController = new ScheduleButtonsController(ScheduleActivity.this, schedule);
 
-        // Hide the buttons when the search bar opens
-        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus)
-                {
-                    hideButtons();
-                    hideSave();
-                }
-            }
-        });
+        searchViewController = new ScheduleSearchViewController(ScheduleActivity.this, searchListView,
+                                                                searchView, buttonsController, searchAdapter);
 
-        // Set text listener for search bar to enable search filtering and suggestions
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+        listViewController = new ScheduleListViewController(ScheduleActivity.this, buttonsController, schedule, searchListView,
+                                                            searchViewController, scheduleListView);
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // Display results
-                searchListView.setVisibility(View.VISIBLE);
+        // Set the observers for the search bar
+        searchViewController.setSearchViewListeners(listViewData, courseStrings, listViewController);
 
-                // Disable buttons
-                hideButtons();
-                hideSave();
+        // Set on click listeners for the search bar and schedule
+        listViewController.setListViewListeners(courses);
 
-                //adapter.getFilter().filter(newText);
-                if (newText != null && !newText.isEmpty())
-                {
-                    // Filter search
-                    ArrayList<String> lstFound = Search.filter(newText, listViewData);
-
-                    // Return the filtered results
-                    setSearchAdapter(lstFound);
-                }
-
-                else
-                {
-                    // If no search, return all options
-                    setSearchAdapter(courseStrings);
-                }
-
-                return false;
-            }
-        });
-
-        // Adding a selected class to the schedule
-        searchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String courseName = searchAdapter.getItem(position);
-                Log.d("Schedule", courseName);
-
-                boolean newCourse = false;
-
-                newCourse = schedule.addCourse(courses, courseName);
-
-                // Update the schedule adapter to show the new course
-                setScheduleAdapter();
-
-                hideButtons();
-                showBtns = false;
-                prevCourseCard = -1;
-                prevCourseName = null;
-                prevView = null;
-
-                if (newCourse)
-                {
-                    showSaveBtn();
-                    Toast toast = Toast.makeText(ScheduleActivity.this, "Course added to schedule", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                else
-                {
-                    Toast toast = Toast.makeText(ScheduleActivity.this, "Course already in schedule", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-
-                closeSearchBar();
-            }
-        });
-
-        // Deals with selecting a course from the schedule listView
-        scheduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (prevView != null)
-                {
-                    // Set previously selected course back to original background
-                    prevView.setBackgroundColor(getResources().getColor(R.color.activityBackground));
-
-                    // Unselect the course
-                    if (prevView.equals(view))
-                    {
-                        prevView = null;
-                        prevCourseCard = -1;
-                        prevCourseName = null;
-                        hideButtons();
-
-                        return;
-                    }
-                }
-
-                prevView = view;
-                prevCourseCard = position;
-                prevCourseName = scheduleAdapter.getItem(position);
-                Log.d("Selecting", "Expected Card: " + prevCourseName);
-                view.setBackgroundColor(getResources().getColor(R.color.mapboxWhite));
-                showButtons();
-            }
-        });
-
-        // Set on-click-listener for the delete button
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showBtns = false;
-                hideButtons();
-                schedule.removeCourse(prevCourseName);
-                // Update the schedule listview
-                setScheduleAdapter();
-                showSaveBtn();
-
-                Toast toast = Toast.makeText(ScheduleActivity.this, "Course removed from schedule", Toast.LENGTH_SHORT);
-                toast.show();
-
-                prevCourseCard = -1;
-                prevCourseName = null;
-                prevView = null;
-            }
-        });
-
-        findBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ScheduleActivity.this, MainActivity.class);
-                Point point = Search.findCoordinates(locations, prevCourseName);
-                DestinationPoint destinationPoint = new DestinationPoint(point.latitude(), point.longitude());
-                intent.putExtra("classLocation", destinationPoint);
-                startActivity(intent);
-            }
-        });
-
-        // Set on-click-listener for the save button
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSave = false;
-                hideSave();
-                saveSchedule();
-                // Quick pop-up message on the bottom of the screen to indicate changes were saved
-                Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule Saved", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
+        // Set on click listeners for all the buttons
+        buttonsController.setButtonListeners(locations);
     }
 
     // Used to load the buttons in the toolbar
@@ -291,54 +121,54 @@ public class ScheduleActivity extends AppCompatActivity {
                 return true;
             case R.id.delete:
                 // Delete entire schedule dialog
-                confirmDeleteDialog();
-                /*schedule.deleteSchedule();
-                setScheduleAdapter();
-                hideButtons();
-                showBtns = false;
-                showSaveBtn();
-
-                Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule deleted", Toast.LENGTH_SHORT);
-                toast.show();*/
-
+                buttonsController.confirmDeleteDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void confirmDeleteDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirm Delete Schedule");
-        builder.setMessage("You are about to delete all classes from your schedule. Do you wish to proceed?");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                schedule.deleteSchedule();
-                setScheduleAdapter();
-                hideButtons();
-                showBtns = false;
-                saveSchedule();
-                Toast toast = Toast.makeText(ScheduleActivity.this, "Schedule deleted", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "Schedule not deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        builder.show();
-    }
-
     @Override
     public void onBackPressed()
     {
         finish();
+    }
+
+    public String getSearchItemString(int position)
+    {
+        return searchAdapter.getItem(position);
+    }
+
+    public String getScheduleItemString(int position)
+    {
+        return scheduleAdapter.getItem(position);
+    }
+
+    public View getPrevView()
+    {
+        return prevView;
+    }
+
+    public String getPrevCourseName()
+    {
+        return prevCourseName;
+    }
+
+    public void setPrevViewBackgroundToNormal()
+    {
+        prevView.setBackgroundColor(getResources().getColor(R.color.activityBackground));
+    }
+
+    public void resetSelectedCourse()
+    {
+        prevCourseName = null;
+        prevView = null;
+    }
+
+    public void setSelectedCourse(View newView, String newCourse)
+    {
+        prevCourseName = newCourse;
+        prevView = newView;
     }
 
     // Keep search bar expanded, but remove the focus
@@ -355,50 +185,13 @@ public class ScheduleActivity extends AppCompatActivity {
         exitSearchBar();
 
         // Re-enable buttons
-        if (showBtns)
-            showButtons();
-        if (showSave)
-            showSaveBtn();
+        buttonsController.enableButtonsConditionally();
 
         findViewById(R.id.schedule_search_lv).setVisibility(View.INVISIBLE);
     }
 
-    // Disable remove and find buttons
-    private void hideButtons()
-    {
-        deleteBtn.setEnabled(false);
-        deleteBtn.setVisibility(View.INVISIBLE);
-        findBtn.setEnabled(false);
-        findBtn.setVisibility(View.INVISIBLE);
-    }
-
-    // Disable save button
-    public void hideSave()
-    {
-        saveBtn.setEnabled(false);
-        saveBtn.setVisibility(View.INVISIBLE);
-    }
-
-    // Enable save button
-    public void showSaveBtn()
-    {
-        saveBtn.setEnabled(true);
-        saveBtn.setVisibility(View.VISIBLE);
-        showSave = true;
-    }
-
-    // Enable remove and find button
-    private void showButtons()
-    {
-        deleteBtn.setEnabled(true);
-        deleteBtn.setVisibility(View.VISIBLE);
-        findBtn.setEnabled(true);
-        findBtn.setVisibility(View.VISIBLE);
-        showBtns = true;
-    }
-
     // Save the changes made to the schedule to the device
-    private void saveSchedule() {
+    public void saveSchedule() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
@@ -413,8 +206,8 @@ public class ScheduleActivity extends AppCompatActivity {
         editor.commit();
 
         // Quick pop-up message on the bottom of the screen to indicate changes were saved
-        /*Toast toast = Toast.makeText(this, "Schedule Saved", Toast.LENGTH_SHORT);
-        toast.show();*/
+        Toast toast = Toast.makeText(this, "Schedule Saved", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     // Load a previously saved schdeule, or make a new one if there is no saved schedule
@@ -440,7 +233,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     // Set adapter for search bar listview
-    private void setSearchAdapter(String[] results)
+    public void setSearchAdapter(String[] results)
     {
         searchAdapter = new ArrayAdapter<>(
                 ScheduleActivity.this,
@@ -450,7 +243,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     // Set adapter for search bar listview
-    private void setSearchAdapter(ArrayList<String> results)
+    public void setSearchAdapter(ArrayList<String> results)
     {
         searchAdapter = new ArrayAdapter<>(
                 ScheduleActivity.this,
@@ -460,7 +253,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     // Set adapter for schedule listview
-    private void setScheduleAdapter()
+    public void setScheduleAdapter()
     {
         scheduleAdapter = new ArrayAdapter<>(
                 ScheduleActivity.this,
