@@ -43,23 +43,13 @@ public class ScheduleButtonsController {
 
     private void setDeleteBtnListener()
     {
+        int typeDeleteCourse = 1;
+
         // Set on-click-listener for the delete button
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                disableCourseButtons();
-
-                String courseName = scheduleActivity.getPrevCourseName();
-
-                schedule.removeCourse(courseName);
-                // Update the schedule listview
-                scheduleActivity.setScheduleAdapter();
-                showSaveButton();
-
-                Toast toast = Toast.makeText(scheduleActivity, "Course removed from schedule", Toast.LENGTH_SHORT);
-                toast.show();
-
-                scheduleActivity.resetSelectedCourse();
+                confirmDeleteDialog(typeDeleteCourse);
             }
         });
     }
@@ -92,28 +82,61 @@ public class ScheduleButtonsController {
         });
     }
 
-    public void confirmDeleteDialog() {
+    public void confirmDeleteDialog(int type) {
         AlertDialog.Builder builder = new AlertDialog.Builder(scheduleActivity);
-        builder.setTitle("Confirm Delete Schedule");
-        builder.setMessage("You are about to delete all classes from your schedule. Do you wish to proceed?");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                schedule.deleteSchedule();
-                scheduleActivity.setScheduleAdapter();
-                disableCourseButtons();
 
-                scheduleActivity.saveSchedule();
-            }
-        });
+        // If type == 0, use confirm delete dialog for deleting entire schedule
+        if (type == 0) {
+            builder.setTitle("Confirm Delete Schedule");
+            builder.setMessage("You are about to delete all classes from your schedule. Do you wish to proceed?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    schedule.deleteSchedule();
+                    scheduleActivity.setScheduleAdapter();
+                    disableCourseButtons();
 
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(scheduleActivity.getApplicationContext(), "Schedule not deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    scheduleActivity.saveSchedule();
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Schedule deleted", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Schedule not deleted", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        // Else, use confirm delete dialog for deleting a single course
+        else {
+            String courseName = scheduleActivity.getPrevCourseName();
+            String courseIdName = courseName.substring(0, courseName.indexOf(":"));
+            builder.setTitle("Confirm Delete Course");
+            builder.setMessage(String.format("You are about to delete %s from your schedule. Do you wish to proceed?", courseIdName));
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    schedule.removeCourse(courseName);
+                    // Update the schedule listview
+                    scheduleActivity.setScheduleAdapter();
+                    disableCourseButtons();
+                    scheduleActivity.saveSchedule();
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Course removed from schedule", Toast.LENGTH_SHORT).show();
+                    scheduleActivity.resetSelectedCourse();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Course not removed from schedule", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         builder.show();
     }
