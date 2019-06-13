@@ -64,8 +64,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
         // Parse courses from JSON data
         courses = JSONParser.getCourses("sections.json");
+        Arrays.sort(courses);
         courseStrings = JSONParser.makeStrings(courses);
-        Arrays.sort(courseStrings);
         Collections.addAll(listViewData, courseStrings);
         Collections.addAll(locations, courses);
 
@@ -114,6 +114,8 @@ public class ScheduleActivity extends AppCompatActivity {
     // What to do for the different options in the toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int typeDeleteSchedule = 0;
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Return to map
@@ -121,7 +123,7 @@ public class ScheduleActivity extends AppCompatActivity {
                 return true;
             case R.id.delete:
                 // Delete entire schedule dialog
-                buttonsController.confirmDeleteDialog();
+                buttonsController.confirmDeleteDialog(typeDeleteSchedule);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -261,5 +263,4 @@ public class ScheduleActivity extends AppCompatActivity {
                 schedule.getCourseNames());
         scheduleListView.setAdapter(scheduleAdapter);
     }
-
 }

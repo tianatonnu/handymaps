@@ -5,7 +5,6 @@ import com.mapbox.geojson.Point;
 import java.util.ArrayList;
 
 public class Search {
-    public Search(){}
 
     // Make filter more robust?
     public static ArrayList<String> filter(String newText, ArrayList<String> allData)
@@ -53,7 +52,7 @@ public class Search {
         return point;
     }
 
-    //Finds course based on full card string
+    // Finds course based on full card string
     public static Course findCourse(Course[] courses, String name)
     {
         Course course = null;

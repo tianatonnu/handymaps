@@ -17,8 +17,6 @@ public class ScheduleButtonsController {
     // The various buttons for the schedule page
     private Button deleteBtn;
     private Button findBtn;
-    private Button saveBtn;
-    private boolean showSaveBtn;
     private boolean showCourseBtns;
 
     private Schedule schedule;
@@ -28,8 +26,6 @@ public class ScheduleButtonsController {
         this.scheduleActivity = scheduleActivity;
         deleteBtn = scheduleActivity.findViewById(R.id.schedule_delete_button);
         findBtn = scheduleActivity.findViewById(R.id.schedule_route_button);
-        saveBtn = scheduleActivity.findViewById(R.id.schedule_save_button);
-        showSaveBtn = false;
         showCourseBtns = false;
         this.schedule = schedule;
     }
@@ -38,28 +34,17 @@ public class ScheduleButtonsController {
     {
         setDeleteBtnListener();
         setFindBtnListener(locations);
-        setSaveBtnListener();
     }
 
     private void setDeleteBtnListener()
     {
+        int typeDeleteCourse = 1;
+
         // Set on-click-listener for the delete button
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                disableCourseButtons();
-
-                String courseName = scheduleActivity.getPrevCourseName();
-
-                schedule.removeCourse(courseName);
-                // Update the schedule listview
-                scheduleActivity.setScheduleAdapter();
-                showSaveButton();
-
-                Toast toast = Toast.makeText(scheduleActivity, "Course removed from schedule", Toast.LENGTH_SHORT);
-                toast.show();
-
-                scheduleActivity.resetSelectedCourse();
+                confirmDeleteDialog(typeDeleteCourse);
             }
         });
     }
@@ -79,41 +64,61 @@ public class ScheduleButtonsController {
         });
     }
 
-    private void setSaveBtnListener()
-    {
-        // Set on-click-listener for the save button
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                disableSaveButton();
-
-                scheduleActivity.saveSchedule();
-            }
-        });
-    }
-
-    public void confirmDeleteDialog() {
+    public void confirmDeleteDialog(int type) {
         AlertDialog.Builder builder = new AlertDialog.Builder(scheduleActivity);
-        builder.setTitle("Confirm Delete Schedule");
-        builder.setMessage("You are about to delete all classes from your schedule. Do you wish to proceed?");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                schedule.deleteSchedule();
-                scheduleActivity.setScheduleAdapter();
-                disableCourseButtons();
 
-                scheduleActivity.saveSchedule();
-            }
-        });
+        // If type == 0, use confirm delete dialog for deleting entire schedule
+        if (type == 0) {
+            builder.setTitle("Confirm Delete Schedule");
+            builder.setMessage("You are about to delete all classes from your schedule. Do you wish to proceed?");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    schedule.deleteSchedule();
+                    scheduleActivity.setScheduleAdapter();
+                    disableCourseButtons();
 
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(scheduleActivity.getApplicationContext(), "Schedule not deleted", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    scheduleActivity.saveSchedule();
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Schedule deleted", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Schedule not deleted", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        // Else, use confirm delete dialog for deleting a single course
+        else {
+            String courseName = scheduleActivity.getPrevCourseName();
+            String courseIdName = courseName.substring(0, courseName.indexOf(":"));
+            builder.setTitle("Confirm Delete Course");
+            builder.setMessage(String.format("You are about to delete %s from your schedule. Do you wish to proceed?", courseIdName));
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    schedule.removeCourse(courseName);
+                    // Update the schedule listview
+                    scheduleActivity.setScheduleAdapter();
+                    disableCourseButtons();
+                    scheduleActivity.saveSchedule();
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Course removed from schedule", Toast.LENGTH_SHORT).show();
+                    scheduleActivity.resetSelectedCourse();
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(scheduleActivity.getApplicationContext(), "Course not removed from schedule", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         builder.show();
     }
@@ -123,8 +128,6 @@ public class ScheduleButtonsController {
     {
         if (showCourseBtns)
             showCourseButtons();
-        if (showSaveBtn)
-            showSaveButton();
     }
 
     public void disableCourseButtons()
@@ -133,15 +136,9 @@ public class ScheduleButtonsController {
         showCourseBtns = false;
     }
 
-    public void disableSaveButton()
-    {
-        hideSaveButton();
-        showSaveBtn = false;
-    }
 
     public void hideAllButtons()
     {
-        hideSaveButton();
         hideCourseButtons();
     }
 
@@ -152,21 +149,6 @@ public class ScheduleButtonsController {
         deleteBtn.setVisibility(View.INVISIBLE);
         findBtn.setEnabled(false);
         findBtn.setVisibility(View.INVISIBLE);
-    }
-
-    // Disable save button
-    public void hideSaveButton()
-    {
-        saveBtn.setEnabled(false);
-        saveBtn.setVisibility(View.INVISIBLE);
-    }
-
-    // Enable save button
-    public void showSaveButton()
-    {
-        saveBtn.setEnabled(true);
-        saveBtn.setVisibility(View.VISIBLE);
-        showSaveBtn = true;
     }
 
     // Enable remove and find button

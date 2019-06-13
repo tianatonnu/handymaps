@@ -164,4 +164,13 @@ public class ClassroomUnitTest {
         assertEquals(1,testClassroom01.compareTo(testClassroom02));
 
     }
+
+    @Test
+    public void classroomComparatorTest13(){
+        Classroom testClassroom01 = new Classroom("Math & Science","38","0204",new double[]{-120.66199690103531, 35.30118890411341});
+
+        Classroom testClassroom02 = new Classroom("Math & Science","38A","0204",new double[]{-120.66199690103531, 35.30118890411341});
+
+        assertEquals(-1,testClassroom01.compareTo(testClassroom02));
+    }
 }
