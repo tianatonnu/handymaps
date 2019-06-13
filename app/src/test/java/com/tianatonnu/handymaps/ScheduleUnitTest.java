@@ -285,4 +285,35 @@ public class ScheduleUnitTest {
         assertFalse(testSched.contains(cStr3));
     }
 
+    // - - - - - - - - - - - - - - - - - - - -
+    //    - ScheduleCourseComparator tests -
+    // - - - - - - - - - - - - - - - - - - - -
+    @Test
+    public void scheduleCourseComparatorTest() {
+        ScheduleCourseComparator sc = new ScheduleCourseComparator();
+
+        assertTrue(sc.compare(c1, c2) > 0);
+        assertEquals(sc.compare(c3, c3), 0);
+        assertTrue(sc.compare(c4, c1) < 0);
+    }
+
+    // - - - - - - - - - - - - - - - - - - - -
+    //    - ScheduleStringComparator tests -
+    // - - - - - - - - - - - - - - - - - - - -
+    @Test
+    public void scheduleStringComparatorTest() {
+        ScheduleStringComparator sc = new ScheduleStringComparator();
+        String cStr1 = "CPE357-01: Systems Programming\nBuilding: Graphic Arts - 26" +
+                "\nRoom: 0102\nTime: 2:10 PM to 4:00 PM on MWF";
+        String cStr2 = "ART145-06: Ceramics I\nBuilding: Walter F. Dexter Building - 34" +
+                "\nRoom: 0221\nTime: 12:10 PM to 3:00 PM on TR";
+        String cStr3 = "AG102-24: Crop Production II\nBuilding: Agricultural Science - 11" +
+                "\nRoom: 0119\nTime: 7:10 AM to 9:00 AM on MWF";
+        String cStr4 = "CHEM233-01: Small Scale Interactions\nBuilding: Baker Science - 180" +
+                "\nRoom: 0504\nTime: 11:10 AM to 2:00 PM on MW";
+
+        assertTrue(sc.compare(cStr1, cStr2) > 0);
+        assertEquals(sc.compare(cStr3, cStr3), 0);
+        assertTrue(sc.compare(cStr4, cStr1) < 0);
+    }
 }
