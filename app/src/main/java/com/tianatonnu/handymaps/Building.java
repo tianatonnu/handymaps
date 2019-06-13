@@ -32,6 +32,11 @@ public class Building implements Location, Comparable<Building>{
     public String createCard(){
         return (bldgNumber + ": " + bldgName + "\n");
     }
+    
+    //CompareTo will compare two buildings to one another
+    //It will test by building number and will ensure that
+    //characters like A come before B, but the simple number will 
+    //be prioritized (100 comes before 100A).
     @Override
     public int compareTo(Building other){
         boolean b1digit = Character.isDigit(this.bldgNumber.charAt( bldgNumber.length()-1));
