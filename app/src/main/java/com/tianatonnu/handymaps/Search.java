@@ -5,7 +5,6 @@ import com.mapbox.geojson.Point;
 import java.util.ArrayList;
 
 public class Search {
-    public Search(){}
 
     // Make filter more robust?
     public static ArrayList<String> filter(String newText, ArrayList<String> allData)

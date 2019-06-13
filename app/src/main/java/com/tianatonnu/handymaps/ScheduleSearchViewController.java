@@ -73,7 +73,6 @@ public class ScheduleSearchViewController {
                 if (hasFocus)
                 {
                     buttonsController.disableCourseButtons();
-                    buttonsController.hideSaveButton();
                     if (scheduleActivity.getPrevView() != null) {
                         // Set previously selected course back to original background
                         scheduleActivity.setPrevViewBackgroundToNormal();

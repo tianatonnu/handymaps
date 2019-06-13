@@ -64,8 +64,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
         // Parse courses from JSON data
         courses = JSONParser.getCourses("sections.json");
+        Arrays.sort(courses);
         courseStrings = JSONParser.makeStrings(courses);
-        Arrays.sort(courseStrings);
         Collections.addAll(listViewData, courseStrings);
         Collections.addAll(locations, courses);
 
@@ -263,5 +263,4 @@ public class ScheduleActivity extends AppCompatActivity {
                 schedule.getCourseNames());
         scheduleListView.setAdapter(scheduleAdapter);
     }
-
 }
