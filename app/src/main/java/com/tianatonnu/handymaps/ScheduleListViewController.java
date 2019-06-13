@@ -50,7 +50,7 @@ public class ScheduleListViewController {
 
                 if (newCourse)
                 {
-                    buttonsController.showSaveButton();
+                    scheduleActivity.saveSchedule();
                     Toast toast = Toast.makeText(scheduleActivity, "Course added to schedule", Toast.LENGTH_SHORT);
                     toast.show();
                 }

@@ -17,8 +17,6 @@ public class ScheduleButtonsController {
     // The various buttons for the schedule page
     private Button deleteBtn;
     private Button findBtn;
-    private Button saveBtn;
-    private boolean showSaveBtn;
     private boolean showCourseBtns;
 
     private Schedule schedule;
@@ -28,8 +26,6 @@ public class ScheduleButtonsController {
         this.scheduleActivity = scheduleActivity;
         deleteBtn = scheduleActivity.findViewById(R.id.schedule_delete_button);
         findBtn = scheduleActivity.findViewById(R.id.schedule_route_button);
-        saveBtn = scheduleActivity.findViewById(R.id.schedule_save_button);
-        showSaveBtn = false;
         showCourseBtns = false;
         this.schedule = schedule;
     }
@@ -38,7 +34,6 @@ public class ScheduleButtonsController {
     {
         setDeleteBtnListener();
         setFindBtnListener(locations);
-        setSaveBtnListener();
     }
 
     private void setDeleteBtnListener()
@@ -65,19 +60,6 @@ public class ScheduleButtonsController {
                 DestinationPoint destinationPoint = new DestinationPoint(point.latitude(), point.longitude());
                 intent.putExtra("classLocation", destinationPoint);
                 scheduleActivity.startActivity(intent);
-            }
-        });
-    }
-
-    private void setSaveBtnListener()
-    {
-        // Set on-click-listener for the save button
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                disableSaveButton();
-
-                scheduleActivity.saveSchedule();
             }
         });
     }
@@ -146,8 +128,6 @@ public class ScheduleButtonsController {
     {
         if (showCourseBtns)
             showCourseButtons();
-        if (showSaveBtn)
-            showSaveButton();
     }
 
     public void disableCourseButtons()
@@ -156,15 +136,9 @@ public class ScheduleButtonsController {
         showCourseBtns = false;
     }
 
-    public void disableSaveButton()
-    {
-        hideSaveButton();
-        showSaveBtn = false;
-    }
 
     public void hideAllButtons()
     {
-        hideSaveButton();
         hideCourseButtons();
     }
 
@@ -175,21 +149,6 @@ public class ScheduleButtonsController {
         deleteBtn.setVisibility(View.INVISIBLE);
         findBtn.setEnabled(false);
         findBtn.setVisibility(View.INVISIBLE);
-    }
-
-    // Disable save button
-    public void hideSaveButton()
-    {
-        saveBtn.setEnabled(false);
-        saveBtn.setVisibility(View.INVISIBLE);
-    }
-
-    // Enable save button
-    public void showSaveButton()
-    {
-        saveBtn.setEnabled(true);
-        saveBtn.setVisibility(View.VISIBLE);
-        showSaveBtn = true;
     }
 
     // Enable remove and find button

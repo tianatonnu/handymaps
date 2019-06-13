@@ -6,7 +6,7 @@ public class Classroom implements Location, Comparable<Classroom>{
     private String roomNumber;
     private double[] location = new double[2];
 
-    public Classroom(String bldgName,String bldgNumber, String roomNumber, double[] location){
+    public Classroom(String bldgName, String bldgNumber, String roomNumber, double[] location){
         this.classRoomBldgName = bldgName;
         this.classRoomBldgNumber = bldgNumber;
         this.roomNumber = roomNumber;
