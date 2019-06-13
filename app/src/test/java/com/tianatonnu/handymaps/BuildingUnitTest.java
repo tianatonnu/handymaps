@@ -10,7 +10,9 @@ public class BuildingUnitTest {
     private Building tBuild3 = new Building(new double[]{-120.653077, 35.297469},"Yosemite Hall Tower 8","1B");
     private Building tBuild4 = new Building(new double[]{-120.653077, 35.297469},"Yosemite Hall Tower 8","2");
     private Building tBuild5 = new Building(new double[]{-120.653077, 35.297469},"Yosemite Hall Tower 8","2A");
-
+    
+    //These tests are simple tests to make construction and getter methods work. This isn't of 
+    //much substance but gives me peace of mind for class construction.
     @Test
     public void buildingTest() {
         assertEquals(35.297469, tBuild1.getLatitude(), 0.1);
@@ -18,6 +20,8 @@ public class BuildingUnitTest {
         assertEquals("Yosemite Hall Tower 8", tBuild1.getBuildingName());
         assertEquals("1", tBuild1.getBuildingNumber());
     }
+    //Sorry all these tests are in a giant chunk. I didn't realize we were
+    //breaking them up. 
     @Test
     public void compareBuildingTests(){
         assertEquals(0, tBuild1.compareTo(tBuild1));
