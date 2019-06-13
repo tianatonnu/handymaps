@@ -52,6 +52,7 @@ public class Search {
         return point;
     }
 
+    // Finds course based on full card string
     public static Course findCourse(Course[] courses, String name)
     {
         Course course = null;

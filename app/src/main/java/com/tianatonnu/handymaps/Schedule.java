@@ -1,5 +1,7 @@
 package com.tianatonnu.handymaps;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Schedule
