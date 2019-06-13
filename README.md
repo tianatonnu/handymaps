@@ -1,4 +1,4 @@
-# handymaps
+# handyMaps
 
 HandyMap is THE map for all things Cal Poly.
 
